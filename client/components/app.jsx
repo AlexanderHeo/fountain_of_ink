@@ -1,6 +1,6 @@
 import React from 'react';
-import View from './view';
-
+import Header from './header';
+import ViewAll from './view-all';
 export default class App extends React.Component {
   // constructor(props) {
   //   super(props);
@@ -14,6 +14,12 @@ export default class App extends React.Component {
   // }
 
   render() {
-    return <View />;
+    return (
+      <div className="container">
+        <Header />
+        <ViewAll />
+      </div>
+    );
+
   }
 }
