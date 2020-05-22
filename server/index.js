@@ -33,6 +33,22 @@ app.get('/api/products/', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/products/:productId', (req, res, next) => {
+  const { productId } = req.params;
+  if (!parseInt(productId)) {
+    next(new ClientError('Product id must be a positive integer.', 400));
+  }
+  const sql = `
+    select *
+      from "products"
+      where "productId" = $1
+  `;
+  const params = [productId];
+  db.query(sql, params)
+    .then(result => res.status(200).json(result.rows[0]))
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
