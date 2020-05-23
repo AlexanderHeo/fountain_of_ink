@@ -1,7 +1,7 @@
 import React from 'react';
-import ViewAllCard from './view-all-card-component';
+import ProductListItem from './product-list-item';
 
-class ViewAll extends React.Component {
+class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -18,11 +18,13 @@ class ViewAll extends React.Component {
   }
 
   render() {
-    let products;
-    if (this.state.products.length === 0) {
-      products = [];
-    } else {
-      products = this.state.products;
+    const products = this.state.products;
+    if (products.length === 0) {
+      return (
+        <div className="d-flex no-details">
+          <div className="no-details-message">Loading</div>
+        </div>
+      );
     }
     return (
       <div className="row">
@@ -30,7 +32,11 @@ class ViewAll extends React.Component {
           {
             products.map(x => {
               return (
-                <ViewAllCard product={x} key={x.productId}/>
+                <ProductListItem
+                  product={x}
+                  key={x.productId}
+                  view={this.props.onClick}
+                />
               );
             })
           }
@@ -40,4 +46,4 @@ class ViewAll extends React.Component {
   }
 }
 
-export default ViewAll;
+export default ProductList;
