@@ -50,8 +50,10 @@ function Details(props) {
           </div>
           <div className="detail-name-price">
             <h4 className="name">{name}</h4>
-            <p className="price">{price}</p>
-            <p className="short-description">{shortDescription}</p>
+            <div className="price-description">
+              <p className="price">{price}</p>
+              <p className="short-description">{shortDescription}</p>
+            </div>
           </div>
         </div>
       </div>

@@ -39,6 +39,7 @@ body {
   width: 90%;
   padding: 0 30px 30px 30px;
   border: 1px solid black;
+  border-radius: .25rem;
   margin: 30px auto;
 }
 .navi {
@@ -46,11 +47,7 @@ body {
   font-size: 0.7rem;
   cursor: pointer;
 }
-.detail-container {
-  height: 200px;
-}
 .detail-img {
-  height: 100%;
   width: 40%;
 }
 .detail-img img {
@@ -61,7 +58,6 @@ body {
 }
 .detail-name-price {
   padding: 0 20px;
-  height: 100%;
   width: 60%;
 }
 .price {
@@ -86,11 +82,30 @@ body {
 }
 /* media queries */
 @media only screen and (max-width: 575px) {
+  .product-main {
+    padding: 10px;
+  }
   .card-img {
     height: 48%;
   }
   .card {
     width: 91%;
+  }
+  .detail-container {
+    flex-direction: column;
+  }
+  .detail-img {
+    width: 80%;
+    margin: auto;
+  }
+  .detail-name-price {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .price-description {
+    margin-left: 20px;
   }
 }
 @media only screen and (min-width: 576px) {
