@@ -66,7 +66,7 @@ function Details(props) {
                 type="button"
                 onClick={() => props.addToCart(product)}
               >Add to Cart</button>
-              <div className="mt-2 d-flex added-to-cart">
+              <div className="d-flex added-to-cart">
                 {!props.addedToCart
                   ? null
                   : <AddedToCart
