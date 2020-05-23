@@ -1,11 +1,11 @@
 import React from 'react';
 
-function ViewAllCard(props) {
+function ProductListItem(props) {
   const name = props.product.name;
   const price = `$${(props.product.price * 0.01).toFixed(2)}`;
   const shortDescript = props.product.shortDescription;
   return (
-    <div className="card">
+    <div className="card" onClick={() => props.view('details', { productId: props.product.productId })}>
       <div className="card-img">
         <img className="card-img-top" src={props.product.image} alt={props.product.name} />
       </div>
@@ -18,4 +18,4 @@ function ViewAllCard(props) {
   );
 }
 
-export default ViewAllCard;
+export default ProductListItem;

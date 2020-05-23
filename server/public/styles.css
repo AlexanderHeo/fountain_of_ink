@@ -5,6 +5,9 @@ body {
 .root {
   margin: auto;
 }
+.container {
+  border: 1px solid black;
+}
 .header {
   background-color: rgb(152, 146, 196);
   font-size: 24px;
@@ -20,6 +23,7 @@ body {
   height: 418px;
   margin: 20px;
   border: 1px solid blue;
+  cursor: pointer;
 }
 .card-img {
   height: 54%;
@@ -31,14 +35,77 @@ body {
 .card-text {
   font-size: 0.9rem;
 }
-
+.details-main {
+  width: 90%;
+  padding: 0 30px 30px 30px;
+  border: 1px solid black;
+  border-radius: .25rem;
+  margin: 30px auto;
+}
+.navi {
+  margin: 20px 0 0 10px;
+  font-size: 0.7rem;
+  cursor: pointer;
+}
+.detail-img {
+  width: 40%;
+}
+.detail-img img {
+  object-fit: contain;
+  height: 80%;
+  width: 100%;
+  margin: auto 0;
+}
+.detail-name-price {
+  padding: 0 20px;
+  width: 60%;
+}
+.price {
+  font-size: 0.8rem;
+}
+.short-description {
+  font-size: 0.7rem;
+}
+.long-description {
+  font-size: 0.7rem;
+}
+.no-details {
+  height: 400px;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+}
+.no-details-message {
+  width: 75%;
+  font-size: 2rem;
+  color: rgb(250, 250, 250);
+}
 /* media queries */
 @media only screen and (max-width: 575px) {
+  .product-main {
+    padding: 10px;
+  }
   .card-img {
     height: 48%;
   }
   .card {
     width: 91%;
+  }
+  .detail-container {
+    flex-direction: column;
+  }
+  .detail-img {
+    width: 80%;
+    margin: auto;
+  }
+  .detail-name-price {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin-top: 10px;
+  }
+  .price-description {
+    margin-left: 20px;
   }
 }
 @media only screen and (min-width: 576px) {
