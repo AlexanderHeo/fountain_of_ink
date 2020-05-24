@@ -1,6 +1,7 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import BackToCatalog from './back-to-catalog';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -48,9 +49,7 @@ function Details(props) {
   const longDescription = props.product.longDescription;
   return (
     <div className="details-main">
-      <div className="row">
-        <div className="navi" onClick={() => props.onClick('catalog', {})}>&lt;Back to catalog</div>
-      </div>
+      <BackToCatalog onClick={props.onClick} />
       <div className="row">
         <div className="d-flex detail-container">
           <div className="d-flex detail-img">
