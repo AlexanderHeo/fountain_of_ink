@@ -143,6 +143,36 @@ app.post('/api/cart', (req, res, next) => {
     });
 });
 
+app.post('/api/orders', (req, res, next) => {
+  // const cartId = req.session.cartId;
+  const cartId = '1';
+  const name = req.body.name;
+  const creditCard = req.body.creditCard;
+  const shippingAddress = req.body.shippingAddress;
+
+  if (!cartId) {
+    next(new ClientError('Please create a new account.', 400));
+    return;
+  } else if (!name || !creditCard || !shippingAddress) {
+    next(new ClientError('Please fill out the form completely.', 400));
+    return;
+  }
+
+  const sql = `
+    insert into "orders" ("cartId", "name", "creditCard", "shippingAddress")
+    values ($1, $2, $3, $4)
+    returning "orderId", "createdAt", "name", "creditCard", "shippingAddress";
+  `;
+  const params = ([cartId, name, creditCard, shippingAddress]);
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(error => {
+      next(error);
+    });
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
