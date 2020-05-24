@@ -144,7 +144,8 @@ app.post('/api/cart', (req, res, next) => {
 });
 
 app.post('/api/orders', (req, res, next) => {
-  const cartId = req.session.cartId;
+  // const cartId = req.session.cartId;
+  const cartId = '1';
   const name = req.body.name;
   const creditCard = req.body.creditCard;
   const shippingAddress = req.body.shippingAddress;
@@ -165,7 +166,7 @@ app.post('/api/orders', (req, res, next) => {
   const params = ([cartId, name, creditCard, shippingAddress]);
   db.query(sql, params)
     .then(result => {
-      res.status(200).json(result.rows[0]);
+      res.status(201).json(result.rows[0]);
     })
     .catch(error => {
       next(error);
