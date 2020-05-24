@@ -10,7 +10,12 @@ function Header(props) {
       </div>
       <div className="col-6 d-flex cart">
         <h4>{props.cartItemCount} Items</h4>
-        <FontAwesomeIcon icon={faShoppingCart} size='lg' />
+        <FontAwesomeIcon
+          className="shopping-cart"
+          icon={faShoppingCart}
+          size='lg'
+          onClick={() => props.onClick('cart', {})}
+        />
       </div>
     </div>
   );

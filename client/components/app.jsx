@@ -1,4 +1,5 @@
 import React from 'react';
+import CartSummary from './cart-summary';
 import Header from './header';
 import ProductDetail from './product-details';
 import ProductList from './product-list';
@@ -76,10 +77,18 @@ export default class App extends React.Component {
         productId={this.state.view.params.productId}
         addedToCart={this.state.addedToCart}
       />;
+    } else if (viewPageState === 'cart') {
+      viewPageComponent = <CartSummary
+        cart={this.state.cart}
+        onClick={this.setView}
+      />;
     }
     return (
       <div className="container">
-        <Header cartItemCount={cartCount} />
+        <Header
+          cartItemCount={cartCount}
+          onClick={this.setView}
+        />
         { viewPageComponent }
       </div>
     );
