@@ -55,21 +55,25 @@ function Details(props) {
   const longDescription = props.product.longDescription;
   return (
     <div className="details-main">
-      <div className="row">
+      <div className="">
         <div className="d-flex detail-container">
           <div className="d-flex detail-img">
             <img src={image} alt="{name}" />
           </div>
-          <div className="detail-name-price">
-            <h4 className="name">{name}</h4>
-            <div className="price-description">
+          <div className="d-flex detail-name-price">
+            <div className="d-flex name-price">
+              <h4 className="name">{name}</h4>
               <p className="price">{price}</p>
+            </div>
+            <div className="d-flex price-description">
               <p className="short-description">{shortDescription}</p>
-              <button
-                className="btn btn-primary"
-                type="button"
-                onClick={() => props.addToCart(product)}
-              >Add to Cart</button>
+              <div className="button">
+                <button
+                  className="btn btn-primary"
+                  type="button"
+                  onClick={() => props.addToCart(product)}
+                >Add to Cart</button>
+              </div>
               <div className="d-flex added-to-cart">
                 {!props.addedToCart
                   ? null
@@ -83,7 +87,7 @@ function Details(props) {
           </div>
         </div>
       </div>
-      <div className="row">
+      <div className="">
         <div className="long-description">{longDescription}</div>
       </div>
     </div>
