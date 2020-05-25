@@ -19,6 +19,7 @@ export default class App extends React.Component {
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
   }
 
   componentDidMount() {
@@ -52,7 +53,7 @@ export default class App extends React.Component {
       .then(res => res.json())
       .then(data => {
         // the product object needs to be added
-        // to the this.start.cart array
+        // to the this.state.cart array
         const cartCopy = this.state.cart;
         const cartAdded = cartCopy.concat(data);
         this.setState({
@@ -63,20 +64,12 @@ export default class App extends React.Component {
   }
 
   placeOrder(customer) {
-    const name = customer.name;
-    const creditCard = customer.creditCard;
-    const shippingAddress = customer.shippingAddress;
-    const customerDetail = {
-      name: name,
-      creditCard: creditCard,
-      shippingAddress: shippingAddress
-    };
     fetch('/api/orders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(customerDetail)
+      body: JSON.stringify(customer)
     })
       .then(res => res.json())
       .then(data => this.setState({
@@ -120,7 +113,6 @@ export default class App extends React.Component {
           onClick={this.setView}
         />
         { viewPageComponent }
-        {/* <CheckoutForm cart={this.state.cart}/> */}
       </div>
     );
   }

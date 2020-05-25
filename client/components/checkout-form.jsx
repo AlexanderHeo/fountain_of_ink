@@ -30,6 +30,11 @@ class CheckoutForm extends React.Component {
       shippingAddress: this.state.address
     };
     this.props.placeOrder(customerInfo);
+    this.setState({
+      name: '',
+      creditCard: '',
+      address: ''
+    });
   }
 
   render() {
