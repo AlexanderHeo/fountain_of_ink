@@ -111,6 +111,7 @@ export default class App extends React.Component {
       viewPageComponent = <CheckoutForm
         cart={this.state.cart}
         onClick={this.setView}
+        placeOrder={this.placeOrder}
       />;
     }
     return (
