@@ -24,9 +24,9 @@ function CartSummary(props) {
             />;
           })
         }
-        <div className="d-flex cart-price-checkout">
+        <div className="d-flex cart-footer">
           <CartTotalPrice cart={cart}/>
-          <div className="d-flex checkoutButton">
+          <div className="d-flex cart-footer-button">
             <button
               className="btn btn-primary"
               type="button"
