@@ -51,7 +51,7 @@ app.get('/api/products/:productId', (req, res, next) => {
 
 app.get('/api/cart', (req, res, next) => {
   if (!req.session.cartId) {
-    res.json([]);
+    next(new ClientError('Cart id must be a positive integer.', 400));
   }
   const sql = `
     select "c"."cartItemId",
