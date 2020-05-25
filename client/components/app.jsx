@@ -63,10 +63,9 @@ export default class App extends React.Component {
   }
 
   placeOrder(customer) {
-    const customerInfo = customer.info;
-    const name = customerInfo.name;
-    const creditCard = customerInfo.creditCard;
-    const shippingAddress = customerInfo.shippingAddress;
+    const name = customer.name;
+    const creditCard = customer.creditCard;
+    const shippingAddress = customer.shippingAddress;
     const customerDetail = {
       name: name,
       creditCard: creditCard,
