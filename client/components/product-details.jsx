@@ -21,13 +21,19 @@ class ProductDetails extends React.Component {
   render() {
     return (
       !this.state.product
-        ? <NoDetails />
-        : <Details
-          product={this.state.product}
-          onClick={this.props.onClick}
-          addToCart={this.props.addToCart}
-          addedToCart={this.props.addedToCart}
-        />
+        ? <>
+          <BackToCatalog onClick={() => this.props.onClick('catalog', {})} />
+          <NoDetails />
+        </>
+        : <>
+          <BackToCatalog onClick={() => this.props.onClick('catalog', {})} />
+          <Details
+            product={this.state.product}
+            onClick={this.props.onClick}
+            addToCart={this.props.addToCart}
+            addedToCart={this.props.addedToCart}
+          />
+        </>
     );
   }
 }
@@ -49,7 +55,6 @@ function Details(props) {
   const longDescription = props.product.longDescription;
   return (
     <div className="details-main">
-      <BackToCatalog onClick={props.onClick} />
       <div className="row">
         <div className="d-flex detail-container">
           <div className="d-flex detail-img">

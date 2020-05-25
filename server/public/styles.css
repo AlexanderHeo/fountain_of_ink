@@ -37,7 +37,7 @@ body {
   height: 100%;
 }
 .card-text {
-  font-size: 0.9rem;
+  /* font-size: 0.9rem; */
 }
 .details-main {
   width: 90%;
@@ -48,7 +48,7 @@ body {
 }
 .back-to-catalog {
   margin: 20px 0 0 55px;
-  font-size: 0.7rem;
+  /* font-size: 0.7rem; */
   cursor: pointer;
 }
 .detail-img {
