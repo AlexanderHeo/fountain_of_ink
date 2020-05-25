@@ -9,7 +9,7 @@ function CartSummary(props) {
     return (
       <>
         <BackToCatalog onClick={props.onClick}/>
-        <h1>Nothing to report</h1>;
+        <h1>Nothing to report</h1>
       </>
     );
   } else {
@@ -24,7 +24,16 @@ function CartSummary(props) {
             />;
           })
         }
-        <CartTotalPrice cart={cart}/>
+        <div className="d-flex cart-footer">
+          <CartTotalPrice cart={cart}/>
+          <div className="d-flex cart-footer-button">
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={() => props.onClick('checkout', {})}
+            >Checkout</button>
+          </div>
+        </div>
       </div>
     );
   }
