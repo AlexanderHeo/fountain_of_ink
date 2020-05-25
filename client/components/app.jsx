@@ -1,5 +1,6 @@
 import React from 'react';
 import CartSummary from './cart-summary';
+import CheckoutForm from './checkout-form';
 import Header from './header';
 import ProductDetail from './product-details';
 import ProductList from './product-list';
@@ -61,6 +62,30 @@ export default class App extends React.Component {
       });
   }
 
+  placeOrder(customer) {
+    const customerInfo = customer.info;
+    const name = customerInfo.name;
+    const creditCard = customerInfo.creditCard;
+    const shippingAddress = customerInfo.shippingAddress;
+    const customerDetail = {
+      name: name,
+      creditCard: creditCard,
+      shippingAddress: shippingAddress
+    };
+    fetch('/api/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(customerDetail)
+    })
+      .then(res => res.json())
+      .then(data => this.setState({
+        view: { name: 'catalog', params: {} },
+        cart: []
+      }));
+  }
+
   render() {
     const viewPageState = this.state.view.name;
     let viewPageComponent = '';
@@ -82,6 +107,11 @@ export default class App extends React.Component {
         cart={this.state.cart}
         onClick={this.setView}
       />;
+    } else if (viewPageState === 'checkout') {
+      viewPageComponent = <CheckoutForm
+        cart={this.state.cart}
+        onClick={this.setView}
+      />;
     }
     return (
       <div className="container">
@@ -90,6 +120,7 @@ export default class App extends React.Component {
           onClick={this.setView}
         />
         { viewPageComponent }
+        {/* <CheckoutForm cart={this.state.cart}/> */}
       </div>
     );
   }
