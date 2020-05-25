@@ -9,6 +9,32 @@ class CheckoutForm extends React.Component {
       creditCard: '',
       address: ''
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+    this.setState({
+      [name]: value
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const customerInfo = {
+      name: this.state.name,
+      creditCard: this.state.creditCard,
+      shippingAddress: this.state.address
+    };
+    this.props.placeOrder(customerInfo);
+    this.setState({
+      name: '',
+      creditCard: '',
+      address: ''
+    });
   }
 
   render() {
@@ -21,7 +47,7 @@ class CheckoutForm extends React.Component {
         <BackToCatalog onClick={this.props.onClick}/>
         <div className="row">
           <div className="col-12 d-flex place-order">
-            <form action="submit">
+            <form onSubmit={this.handleSubmit}>
               <div className="place-order-header">
                 <h3>Checkout</h3>
                 <h4>Order Total: ${checkoutPrice}</h4>
@@ -35,6 +61,9 @@ class CheckoutForm extends React.Component {
                     type="text"
                     id="name"
                     name="name"
+                    value={this.state.name}
+                    placeholder='Name'
+                    onChange={this.handleChange}
                   />
                 </p>
                 <p className="checkout-section">
@@ -45,6 +74,9 @@ class CheckoutForm extends React.Component {
                     type="txt"
                     id="creditCard"
                     name="creditCard"
+                    value={this.state.creditCard}
+                    placeholder='Credit Card'
+                    onChange={this.handleChange}
                   />
                 </p>
                 <p className="checkout-section">
@@ -55,7 +87,10 @@ class CheckoutForm extends React.Component {
                     name="address"
                     id="address"
                     cols="30"
-                    rows="4">
+                    rows="4"
+                    value={this.state.address}
+                    placeholder='Address'
+                    onChange={this.handleChange}>
                   </textarea>
                 </p>
               </section>
@@ -76,7 +111,7 @@ class CheckoutForm extends React.Component {
                   <button
                     className="btn btn-primary"
                     type="button"
-                    onClick={this.onSubmit}
+                    onClick={this.handleSubmit}
                   >Checkout</button>
                 </div>
               </div>
