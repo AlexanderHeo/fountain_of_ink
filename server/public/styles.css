@@ -45,7 +45,7 @@ body {
   justify-content: flex-end;
   align-items: center;
 }
-.shopping-cart {
+.cart {
   cursor: pointer;
 }
 .product-main {

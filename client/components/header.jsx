@@ -13,13 +13,15 @@ function Header(props) {
           <img src="/images/fountain-pen.png" alt="fountain pen"/>
         </button>
         <div className="shop-name"><h1>Fountain of Ink</h1></div>
-        <div className="d-flex cart">
+        <div
+          className="d-flex cart"
+          onClick={() => props.onClick('cart', {}, false)}
+        >
           <h4>{props.cartItemCount} Items</h4>
           <FontAwesomeIcon
             className="shopping-cart"
             icon={faShoppingCart}
             size='lg'
-            onClick={() => props.onClick('cart', {}, false)}
           />
         </div>
       </div>
