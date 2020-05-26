@@ -83,19 +83,14 @@ export default class App extends React.Component {
   }
 
   chooseCategory(category) {
-    if (category === 'pen') {
-      this.setState({
-        category: 'pen'
-      });
-    } else if (category === 'ink') {
-      this.setState({
-        category: 'ink'
-      });
-    } else if (category === 'wickedSales') {
-      this.setState({
-        category: 'wickedSales'
-      });
-    }
+    this.setState({
+      category: category,
+      view: {
+        name: 'catalog',
+        params: {},
+        fromCart: false
+      }
+    });
   }
 
   render() {
