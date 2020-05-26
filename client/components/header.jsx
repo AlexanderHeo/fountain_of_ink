@@ -5,22 +5,23 @@ import React from 'react';
 function Header(props) {
   return (
     <div className="row">
-      <div className="col-6 header">
+      <div className="header">
         <button
-          className="wicked-sales"
+          className="logo"
           type="button"
           onClick={() => props.onClick('catalog', {}, false)}>
-          <img src="/images/pen.png" alt="fountain pen"/>
+          <img src="/images/fountain-pen.png" alt="fountain pen"/>
         </button>
-      </div>
-      <div className="col-6 d-flex cart">
-        <h4>{props.cartItemCount} Items</h4>
-        <FontAwesomeIcon
-          className="shopping-cart"
-          icon={faShoppingCart}
-          size='lg'
-          onClick={() => props.onClick('cart', {}, false)}
-        />
+        <div className="shop-name"><h1>Fountain of Ink</h1></div>
+        <div className="d-flex cart">
+          <h4>{props.cartItemCount} Items</h4>
+          <FontAwesomeIcon
+            className="shopping-cart"
+            icon={faShoppingCart}
+            size='lg'
+            onClick={() => props.onClick('cart', {}, false)}
+          />
+        </div>
       </div>
     </div>
   );
