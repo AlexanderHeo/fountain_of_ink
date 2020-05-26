@@ -17,8 +17,15 @@ body {
   font-size: 20px;
   padding: 10px 24px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   background-color: rgb(152, 146, 196);
+}
+.category button {
+  padding: 20px;
+  width: 20%;
+  font-size: 20px;
+  background-color: rgb(142, 136, 186);
+  color: black;
 }
 .cart {
   justify-content: flex-end;
@@ -38,6 +45,9 @@ body {
   margin: 20px;
   border: 1px solid blue;
   cursor: pointer;
+}
+.card-body {
+  overflow: hidden;
 }
 .card-img {
   height: 54%;
