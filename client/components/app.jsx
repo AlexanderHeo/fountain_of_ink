@@ -1,5 +1,6 @@
 import React from 'react';
 import CartSummary from './cart-summary';
+import Category from './category';
 import CheckoutForm from './checkout-form';
 import Header from './header';
 import ProductDetail from './product-details';
@@ -15,23 +16,18 @@ export default class App extends React.Component {
         fromCart: false
       },
       cart: [],
-      addedToCart: false
+      addedToCart: false,
+      category: 'pen'
     };
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
+    this.chooseCategory = this.chooseCategory.bind(this);
   }
 
   componentDidMount() {
     this.getCartItems();
-  }
-
-  setView(name, params, fromCart) {
-    this.setState({
-      view: { name: name, params: params, fromCart: fromCart },
-      addedToCart: false
-    });
   }
 
   getCartItems() {
@@ -40,6 +36,13 @@ export default class App extends React.Component {
       .then(data => this.setState({
         cart: data
       }));
+  }
+
+  setView(name, params, fromCart) {
+    this.setState({
+      view: { name: name, params: params, fromCart: fromCart },
+      addedToCart: false
+    });
   }
 
   addToCart(product) {
@@ -79,6 +82,22 @@ export default class App extends React.Component {
       }));
   }
 
+  chooseCategory(category) {
+    if (category === 'pen') {
+      this.setState({
+        category: 'pen'
+      });
+    } else if (category === 'ink') {
+      this.setState({
+        category: 'ink'
+      });
+    } else if (category === 'wickedSales') {
+      this.setState({
+        category: 'wickedSales'
+      });
+    }
+  }
+
   render() {
     const viewPageState = this.state.view.name;
     let viewPageComponent = '';
@@ -87,7 +106,10 @@ export default class App extends React.Component {
       cartCount = this.state.cart.length;
     }
     if (viewPageState === 'catalog') {
-      viewPageComponent = <ProductList onClick={this.setView} />;
+      viewPageComponent = <ProductList
+        onClick={this.setView}
+        category={this.state.category}
+      />;
     } else if (viewPageState === 'details') {
       viewPageComponent = <ProductDetail
         onClick={this.setView}
@@ -114,6 +136,8 @@ export default class App extends React.Component {
         <Header
           cartItemCount={cartCount}
           onClick={this.setView}/>
+        <Category
+          chooseCategory={this.chooseCategory}/>
         {viewPageComponent}
       </div>
     );

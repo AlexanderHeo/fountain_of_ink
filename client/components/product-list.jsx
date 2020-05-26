@@ -5,20 +5,46 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      wickedSales: [],
+      pens: [],
+      inks: []
     };
   }
 
   componentDidMount() {
     fetch('/api/products')
       .then(res => res.json())
-      .then(data => this.setState({
-        products: data
-      }));
+      .then(data => {
+        const wicked = [];
+        const pen = [];
+        const ink = [];
+        data.map(x => {
+          if (x.category === 'wickedSales') {
+            wicked.push(x);
+          } else if (x.category === 'pen') {
+            pen.push(x);
+          } else if (x.category === 'ink') {
+            ink.push(x);
+          }
+        });
+        this.setState({
+          wickedSales: wicked,
+          pens: pen,
+          inks: ink
+        });
+      });
   }
 
   render() {
-    const products = this.state.products;
+    let products = '';
+    if (this.props.category === 'wickedSales') {
+      products = this.state.wickedSales;
+    } else if (this.props.category === 'pen') {
+      products = this.state.pens;
+    } else if (this.props.category === 'ink') {
+      products = this.state.inks;
+    }
+
     if (products.length === 0) {
       return (
         <div className="d-flex no-details">
