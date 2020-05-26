@@ -1,6 +1,7 @@
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import BackToCart from './back-to-cart';
 import BackToCatalog from './back-to-catalog';
 
 class ProductDetails extends React.Component {
@@ -19,14 +20,21 @@ class ProductDetails extends React.Component {
   }
 
   render() {
+    let toCart = '';
+    if (!this.props.fromCart) {
+      toCart = null;
+    } else if (this.props.fromCart) {
+      toCart = <BackToCart onClick={() => this.props.onClick('cart', {}, false)} />;
+    }
     return (
       !this.state.product
         ? <>
-          <BackToCatalog onClick={() => this.props.onClick('catalog', {})} />
+          <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
           <NoDetails />
         </>
         : <>
-          <BackToCatalog onClick={() => this.props.onClick('catalog', {})} />
+          <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
+          {toCart}
           <Details
             product={this.state.product}
             onClick={this.props.onClick}
@@ -103,7 +111,7 @@ function AddedToCart(props) {
       <button
         className="btn btn-success"
         type="button"
-        onClick={() => props.onClick('catalog', {})}
+        onClick={() => props.onClick('catalog', {}, false)}
       >Return to Catalog</button>
     </>
   );

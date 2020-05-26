@@ -11,7 +11,8 @@ export default class App extends React.Component {
     this.state = {
       view: {
         name: 'catalog',
-        params: {}
+        params: {},
+        fromCart: false
       },
       cart: [],
       addedToCart: false
@@ -26,9 +27,9 @@ export default class App extends React.Component {
     this.getCartItems();
   }
 
-  setView(name, params) {
+  setView(name, params, fromCart) {
     this.setState({
-      view: { name: name, params: params },
+      view: { name: name, params: params, fromCart: fromCart },
       addedToCart: false
     });
   }
@@ -73,7 +74,7 @@ export default class App extends React.Component {
     })
       .then(res => res.json())
       .then(data => this.setState({
-        view: { name: 'catalog', params: {} },
+        view: { name: 'catalog', params: {}, fromCart: false },
         cart: []
       }));
   }
@@ -93,11 +94,13 @@ export default class App extends React.Component {
         addToCart={this.addToCart}
         productId={this.state.view.params.productId}
         addedToCart={this.state.addedToCart}
+        fromCart={this.state.view.fromCart}
       />;
     } else if (viewPageState === 'cart') {
       viewPageComponent = <CartSummary
         cart={this.state.cart}
         onClick={this.setView}
+        productId={this.state.view.params.productId}
       />;
     } else if (viewPageState === 'checkout') {
       viewPageComponent = <CheckoutForm
@@ -110,9 +113,8 @@ export default class App extends React.Component {
       <div className="container">
         <Header
           cartItemCount={cartCount}
-          onClick={this.setView}
-        />
-        { viewPageComponent }
+          onClick={this.setView}/>
+        {viewPageComponent}
       </div>
     );
   }

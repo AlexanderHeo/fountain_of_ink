@@ -103,7 +103,7 @@ class CheckoutForm extends React.Component {
                 >
                   <div
                     className="m-0 back-to-catalog"
-                    onClick={() => this.props.onClick('catalog', {})}
+                    onClick={() => this.props.onClick('catalog', {}, false)}
                     style={{ fontSize: '20px' }}
                   >&lt;Return to shopping</div>
                 </div>
