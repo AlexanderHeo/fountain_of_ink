@@ -47,6 +47,8 @@ body {
 }
 .cart {
   cursor: pointer;
+  border-radius: 5px;
+  padding: 2px 10px;
 }
 .product-main {
   padding: 35px 45px;
@@ -59,6 +61,17 @@ body {
   margin: 20px;
   border: 1px solid blue;
   cursor: pointer;
+}
+.logo:hover,
+.card:hover,
+.cart-item-container:hover,
+.cart:hover,
+.back-to-catalog:hover,
+.back-to-cart:hover,
+button:hover,
+input:hover,
+textarea:hover {
+  box-shadow: 0px 0px 25px 14px rgb(222, 222, 255, 0.75);
 }
 .card-body {
   overflow: hidden;
@@ -80,10 +93,14 @@ body {
 .back-to-catalog {
   margin: 20px 0 0 55px;
   cursor: pointer;
+  border-radius: 5px;
+  padding: 2px 15px;
 }
 .back-to-cart {
   margin: 0 0 0 55px;
   cursor: pointer;
+  border-radius: 5px;
+  padding: 2px 15px;
 }
 .detail-img {
   width: 40%;
