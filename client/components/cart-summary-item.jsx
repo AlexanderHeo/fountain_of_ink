@@ -9,7 +9,9 @@ function CartSummaryItem(props) {
     const shortDescription = props.item.shortDescription;
 
     return (
-      <div className="d-flex cart-item-container">
+      <div
+        className="d-flex cart-item-container"
+        onClick={() => props.view('details', { productId: props.item.productId }, true)}>
         <div className="cart-item-image-container">
           <img src={props.item.image} alt={props.name} className="cart-item-image"/>
         </div>

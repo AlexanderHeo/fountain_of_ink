@@ -5,7 +5,7 @@ function ProductListItem(props) {
   const price = `$${(props.product.price * 0.01).toFixed(2)}`;
   const shortDescript = props.product.shortDescription;
   return (
-    <div className="card" onClick={() => props.view('details', { productId: props.product.productId })}>
+    <div className="card" onClick={() => props.view('details', { productId: props.product.productId }, false)}>
       <div className="card-img">
         <img className="card-img-top" src={props.product.image} alt={props.product.name} />
       </div>
