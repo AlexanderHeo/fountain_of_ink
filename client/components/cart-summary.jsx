@@ -21,6 +21,7 @@ function CartSummary(props) {
             return <CartSummaryItem
               key={x.cartItemId}
               item={x}
+              view={props.onClick}
             />;
           })
         }
@@ -30,7 +31,7 @@ function CartSummary(props) {
             <button
               className="btn btn-primary"
               type="button"
-              onClick={() => props.onClick('checkout', {})}
+              onClick={() => props.onClick('checkout', {}, false)}
             >Checkout</button>
           </div>
         </div>

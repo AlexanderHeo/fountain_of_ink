@@ -14,7 +14,7 @@ function Header(props) {
           className="shopping-cart"
           icon={faShoppingCart}
           size='lg'
-          onClick={() => props.onClick('cart', {})}
+          onClick={() => props.onClick('cart', {}, false)}
         />
       </div>
     </div>
