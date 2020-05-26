@@ -5,7 +5,7 @@ function BackToCatalog(props) {
     <div className="mb-2 row">
       <div
         className="back-to-catalog"
-        onClick={() => props.onClick('catalog', {})}
+        onClick={() => props.onClick('catalog', {}, false)}
       >&lt;Back to catalog</div>
     </div>
   );
