@@ -1,6 +1,5 @@
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
+import AddedToCart from './added-to-cart';
 import BackToCart from './back-to-cart';
 import BackToCatalog from './back-to-catalog';
 
@@ -99,21 +98,6 @@ function Details(props) {
         <div className="long-description">{longDescription}</div>
       </div>
     </div>
-  );
-}
-
-function AddedToCart(props) {
-  return (
-    <>
-      <div className="added-message">{props.name} has been added to the Cart&nbsp;&nbsp;
-        <FontAwesomeIcon icon={faCheck} color="green"/>
-      </div>
-      <button
-        className="btn btn-success"
-        type="button"
-        onClick={() => props.onClick('catalog', {}, false)}
-      >Return to Catalog</button>
-    </>
   );
 }
 

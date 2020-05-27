@@ -17,7 +17,8 @@ export default class App extends React.Component {
       },
       cart: [],
       addedToCart: false,
-      category: 'pen'
+      category: 'pen',
+      cartQuantity: {}
     };
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
@@ -33,9 +34,30 @@ export default class App extends React.Component {
   getCartItems() {
     fetch('/api/cart')
       .then(res => res.json())
-      .then(data => this.setState({
-        cart: data
-      }));
+      .then(data => {
+        this.setState({
+          cart: data
+        });
+        const cart = data;
+        const uniqueArr = Array.from(new Set(cart.map(x => x.productId)))
+          .map(id => {
+            return cart.find(x => x.productId === id);
+          });
+        const allProductIds = cart.map(x => {
+          return x.productId;
+        });
+        const uniqueObj = {};
+        for (var i = 0; i < uniqueArr.length; i++) {
+          let count = 0;
+          if (!Object.prototype.hasOwnProperty.call(uniqueObj, uniqueArr[i].productId)) {
+            allProductIds.forEach(x => (x === uniqueArr[i].productId) && count++);
+            uniqueObj[uniqueArr[i].productId] = count;
+          }
+        }
+        this.setState({
+          cartQuantity: uniqueObj
+        });
+      });
   }
 
   setView(name, params, fromCart) {
@@ -118,6 +140,7 @@ export default class App extends React.Component {
         cart={this.state.cart}
         onClick={this.setView}
         productId={this.state.view.params.productId}
+        cartQuantity={this.state.cartQuantity}
       />;
     } else if (viewPageState === 'checkout') {
       viewPageComponent = <CheckoutForm
