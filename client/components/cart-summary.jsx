@@ -9,23 +9,25 @@ function CartSummary(props) {
     return (
       <>
         <BackToCatalog onClick={props.onClick}/>
-        <h1>Nothing to report</h1>
+        <h1>Nothing in the cart.</h1>
       </>
     );
   } else {
     return (
       <div>
         <BackToCatalog onClick={props.onClick} />
+        <div className="d-flex shop-name cart-label">Shopping Cart</div>
         {
           cart.map(x => {
             return <CartSummaryItem
               key={x.cartItemId}
               item={x}
               view={props.onClick}
+              cartQuantity={props.cartQuantity}
             />;
           })
         }
-        <div className="d-flex cart-footer">
+        <div className="d-flex mb-3 cart-footer">
           <CartTotalPrice cart={cart}/>
           <div className="d-flex cart-footer-button">
             <button

@@ -12,7 +12,7 @@ function ProductListItem(props) {
       <div className="card-body">
         <h5 className="card-title">{name}</h5>
         <p className="card-text">{price}</p>
-        <p className="card-text">{shortDescript}</p>
+        <p className="card-text text">{shortDescript}</p>
       </div>
     </div>
   );

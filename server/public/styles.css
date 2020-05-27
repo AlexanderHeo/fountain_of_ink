@@ -5,6 +5,9 @@ body {
 .root {
   margin: auto;
 }
+::-webkit-scrollbar {
+    display: none;
+}
 .header {
   background-color: rgb(152, 146, 196);
   padding: 10px 24px;
@@ -64,6 +67,9 @@ body {
   border: 1px solid rgb(152, 146, 196);
   cursor: pointer;
 }
+.card-body {
+  overflow: scroll;
+}
 .logo:hover,
 .card:hover,
 .cart-item-container:hover,
@@ -80,9 +86,6 @@ textarea:hover {
 .logo img:hover {
   background-color: #fff;
   color: #000;
-}
-.card-body {
-  overflow: hidden;
 }
 .card-img {
   height: 54%;
@@ -110,7 +113,8 @@ textarea:hover {
   border-radius: 5px;
   padding: 2px 15px;
 }
-.detail-img {
+.detail-img,
+.cart-item-image-container {
   width: 40%;
 }
 .detail-img img {
@@ -125,9 +129,7 @@ textarea:hover {
   flex-direction: column;
   justify-content: center;
 }
-.name-price {
-  flex-direction: column;
-}
+.name-price,
 .price-description {
   flex-direction: column;
 }
@@ -161,9 +163,6 @@ textarea:hover {
   margin: 20px 40px;
   height: 350px;
   cursor: pointer;
-}
-.cart-item-image-container {
-  width: 40%;
 }
 .cart-item-image-container img {
   object-fit: contain;
