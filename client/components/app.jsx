@@ -35,28 +35,35 @@ export default class App extends React.Component {
     fetch('/api/cart')
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          cart: data
-        });
-        const cart = data;
-        const uniqueArr = Array.from(new Set(cart.map(x => x.productId)))
-          .map(id => {
-            return cart.find(x => x.productId === id);
+        // console.log(Object.keys(data))
+        if (Object.keys(data)[0] === 'error') {
+          this.setState({
+            cart: []
           });
-        const allProductIds = cart.map(x => {
-          return x.productId;
-        });
-        const uniqueObj = {};
-        for (var i = 0; i < uniqueArr.length; i++) {
-          let count = 0;
-          if (!Object.prototype.hasOwnProperty.call(uniqueObj, uniqueArr[i].productId)) {
-            allProductIds.forEach(x => (x === uniqueArr[i].productId) && count++);
-            uniqueObj[uniqueArr[i].productId] = count;
+        } else {
+          this.setState({
+            cart: data
+          });
+          const cart = data;
+          const uniqueArr = Array.from(new Set(cart.map(x => x.productId)))
+            .map(id => {
+              return cart.find(x => x.productId === id);
+            });
+          const allProductIds = cart.map(x => {
+            return x.productId;
+          });
+          const uniqueObj = {};
+          for (var i = 0; i < uniqueArr.length; i++) {
+            let count = 0;
+            if (!Object.prototype.hasOwnProperty.call(uniqueObj, uniqueArr[i].productId)) {
+              allProductIds.forEach(x => (x === uniqueArr[i].productId) && count++);
+              uniqueObj[uniqueArr[i].productId] = count;
+            }
           }
+          this.setState({
+            cartQuantity: uniqueObj
+          });
         }
-        this.setState({
-          cartQuantity: uniqueObj
-        });
       });
   }
 
@@ -78,8 +85,6 @@ export default class App extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
-        // the product object needs to be added
-        // to the this.state.cart array
         const cartCopy = this.state.cart;
         const cartAdded = cartCopy.concat(data);
         this.setState({
