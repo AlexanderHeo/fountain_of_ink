@@ -29,7 +29,7 @@ The Fountain of Ink is a dynamic web marketplace for fountain pen enthusiasts to
 
 # Preview
 
-![Fountain of Ink](foi.gif)
+![Fountain of Ink](fountainOfInk.gif)
 
 # Development
 ## System Requirements
