@@ -16,7 +16,6 @@ export default class App extends React.Component {
         fromCart: false
       },
       cart: [],
-      addedToCart: false,
       category: 'pen',
       cartQuantity: {}
     };
@@ -35,7 +34,6 @@ export default class App extends React.Component {
     fetch('/api/cart')
       .then(res => res.json())
       .then(data => {
-        // console.log(Object.keys(data))
         if (Object.keys(data)[0] === 'error') {
           this.setState({
             cart: []
@@ -69,8 +67,7 @@ export default class App extends React.Component {
 
   setView(name, params, fromCart) {
     this.setState({
-      view: { name: name, params: params, fromCart: fromCart },
-      addedToCart: false
+      view: { name: name, params: params, fromCart: fromCart }
     });
   }
 
@@ -88,8 +85,7 @@ export default class App extends React.Component {
         const cartCopy = this.state.cart;
         const cartAdded = cartCopy.concat(data);
         this.setState({
-          cart: cartAdded,
-          addedToCart: true
+          cart: cartAdded
         });
       });
   }
@@ -137,7 +133,6 @@ export default class App extends React.Component {
         onClick={this.setView}
         addToCart={this.addToCart}
         productId={this.state.view.params.productId}
-        addedToCart={this.state.addedToCart}
         fromCart={this.state.view.fromCart}
       />;
     } else if (viewPageState === 'cart') {

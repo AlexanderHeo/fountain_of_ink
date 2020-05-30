@@ -67,7 +67,8 @@ body {
   border: 1px solid rgb(152, 146, 196);
   cursor: pointer;
 }
-.card-body {
+.card-body,
+.short-description {
   overflow: scroll;
 }
 .logo:hover,
@@ -198,8 +199,25 @@ textarea:hover {
   flex-direction: column;
 }
 
+.added-modal {
+  width: 340px;
+  position: absolute;
+  background-color: white;
+  border: 1px solid black;
+}
+.detail-image-container,
+.detail-image-name-price-container {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin: 10px 0;
+}
 /* media queries */
 @media only screen and (max-width: 575px) {
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
   .product-main {
     padding: 10px;
   }
@@ -281,6 +299,9 @@ textarea:hover {
   .cart-item-description {
     width: 50%;
   }
+  .added-modal {
+    width: 315px;
+  }
 }
 @media only screen and (min-width: 576px) {
   .card {
@@ -303,6 +324,17 @@ textarea:hover {
   .cart-item-description {
     width: 50%;
   }
+  .added-modal {
+    width: 510px;
+    flex-direction: column;
+  }
+  .detail-image-container,
+  .detail-image-name-price-container {
+    width: 100%;
+  }
+  .detail-image-name-price-container {
+    margin-bottom: 10px;
+  }
 }
 @media only screen and (min-width: 768px) {
   .card {
@@ -321,6 +353,13 @@ textarea:hover {
   .shop-name h1 {
     font-size: 3.5rem;
   }
+  .added-modal {
+    width: 690px;
+    flex-direction: row;
+  }
+  .detail-image-name-price-container {
+    margin-right: 20px;
+  }
 }
 @media only screen and (min-width: 992px) {
   .card{
@@ -333,6 +372,9 @@ textarea:hover {
   .shop-name h1 {
     font-size: 4.5rem;
   }
+  .added-modal {
+    width: 930px;
+  }
 }
 @media only screen and (min-width: 1200px) {
   .place-order,
@@ -341,5 +383,8 @@ textarea:hover {
   }
   .shop-name h1 {
     font-size: 5.5rem;
+  }
+  .added-modal {
+    width: 1110px;
   }
 }
