@@ -7,8 +7,10 @@ class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: ''
+      product: '',
+      addedToCart: false
     };
+    this.handleAddedToCart = this.handleAddedToCart.bind(this);
   }
 
   componentDidMount() {
@@ -18,30 +20,41 @@ class ProductDetails extends React.Component {
       .then(data => this.setState({ product: data }));
   }
 
+  handleAddedToCart() {
+    this.setState({ addedToCart: true });
+  }
+
   render() {
-    let toCart = '';
-    if (!this.props.fromCart) {
-      toCart = null;
-    } else if (this.props.fromCart) {
-      toCart = <BackToCart onClick={() => this.props.onClick('cart', {}, false)} />;
+    if (!this.state.addedToCart) {
+      let toCart = '';
+      if (!this.props.fromCart) {
+        toCart = null;
+      } else if (this.props.fromCart) {
+        toCart = <BackToCart onClick={() => this.props.onClick('cart', {}, false)} />;
+      }
+      return (
+        !this.state.product
+          ? <>
+            <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
+            <NoDetails />
+          </>
+          : <>
+            <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
+            {toCart}
+            <Details
+              product={this.state.product}
+              onClick={this.props.onClick}
+              addToCart={this.props.addToCart}
+              handleAddedToCart={this.handleAddedToCart}
+            />
+          </>
+      );
+    } else {
+      return <AddedToCart
+        product={this.state.product}
+        onClick={this.props.onClick}
+      />;
     }
-    return (
-      !this.state.product
-        ? <>
-          <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
-          <NoDetails />
-        </>
-        : <>
-          <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
-          {toCart}
-          <Details
-            product={this.state.product}
-            onClick={this.props.onClick}
-            addToCart={this.props.addToCart}
-            addedToCart={this.props.addedToCart}
-          />
-        </>
-    );
   }
 }
 
@@ -53,16 +66,25 @@ function NoDetails() {
   );
 }
 
-function Details(props) {
-  const product = props.product;
-  const name = props.product.name;
-  const price = `$${(props.product.price * 0.01).toFixed(2)}`;
-  const image = props.product.image;
-  const shortDescription = props.product.shortDescription;
-  const longDescription = props.product.longDescription;
-  return (
-    <div className="details-main">
-      <div className="">
+class Details extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.props.addToCart(this.props.product);
+    this.props.handleAddedToCart();
+  }
+
+  render() {
+    const name = this.props.product.name;
+    const price = `$${(this.props.product.price * 0.01).toFixed(2)}`;
+    const image = this.props.product.image;
+    const shortDescription = this.props.product.shortDescription;
+    const longDescription = this.props.product.longDescription;
+    const detailOrCart = (
+      <div className="details-main">
         <div className="d-flex detail-container">
           <div className="d-flex detail-img">
             <img src={image} alt="{name}" />
@@ -78,27 +100,23 @@ function Details(props) {
                 <button
                   className="btn btn-primary"
                   type="button"
-                  onClick={() => props.addToCart(product)}
+                  onClick={this.handleClick}
                 >Add to Cart</button>
-              </div>
-              <div className="d-flex added-to-cart">
-                {!props.addedToCart
-                  ? null
-                  : <AddedToCart
-                    name={name}
-                    onClick={props.onClick}
-                  />
-                }
               </div>
             </div>
           </div>
         </div>
+        <div className="">
+          <div className="long-description">{longDescription}</div>
+        </div>
       </div>
-      <div className="">
-        <div className="long-description">{longDescription}</div>
+    );
+    return (
+      <div>
+        {detailOrCart}
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default ProductDetails;
