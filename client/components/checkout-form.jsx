@@ -181,7 +181,7 @@ class CheckoutForm extends React.Component {
 
 function Invalid(props) {
   return (
-    <div className="invalid-message">{`You must enter a(n) ${props.invalidField}`}</div>
+    <div className="invalid-message">{`**You must enter a(n) ${props.invalidField}`}</div>
   );
 }
 
