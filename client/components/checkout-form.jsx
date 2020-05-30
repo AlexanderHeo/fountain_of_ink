@@ -48,7 +48,7 @@ class CheckoutForm extends React.Component {
         <div className="row">
           <div className="col-12 d-flex place-order">
             <form onSubmit={this.handleSubmit}>
-              <div className="place-order-header">
+              <div className="d-flex place-order-header">
                 <h3>Checkout</h3>
                 <h4>Order Total: ${checkoutPrice}</h4>
               </div>
