@@ -7,10 +7,12 @@ class CheckoutForm extends React.Component {
     this.state = {
       name: '',
       creditCard: '',
-      address: ''
+      address: '',
+      validInput: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleValidInput = this.handleValidInput.bind(this);
   }
 
   handleChange(event) {
@@ -18,26 +20,58 @@ class CheckoutForm extends React.Component {
     const name = target.name;
     const value = target.value;
     this.setState({
-      [name]: value
+      [name]: value,
+      validInput: ''
     });
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    const customerInfo = {
-      name: this.state.name,
-      creditCard: this.state.creditCard,
-      shippingAddress: this.state.address
-    };
-    this.props.placeOrder(customerInfo);
-    this.setState({
-      name: '',
-      creditCard: '',
-      address: ''
-    });
+    if (this.state.validInput) {
+      this.setState({
+        validInput: ''
+      });
+    } else {
+      if (!this.state.name) {
+        this.setState({
+          validInput: 'name'
+        });
+      } else if (!this.state.creditCard) {
+        this.setState({
+          validInput: 'creditCard'
+        });
+      } else if (!this.state.address) {
+        this.setState({
+          validInput: 'address'
+        });
+      } else {
+        const customerInfo = {
+          name: this.state.name,
+          creditCard: this.state.creditCard,
+          shippingAddress: this.state.address
+        };
+        this.props.placeOrder(customerInfo);
+        this.setState({
+          name: '',
+          creditCard: '',
+          address: '',
+          validInput: ''
+        });
+      }
+    }
+  }
+
+  handleValidInput(event) {
+    const name = event.target.name;
+    if (this.state.validInput === name) {
+      this.setState({
+        validInput: ''
+      });
+    }
   }
 
   render() {
+    const validInput = this.state.validInput;
     const cart = this.props.cart;
     const allPrice = [];
     cart.map(x => { allPrice.push(x.price); });
@@ -48,7 +82,7 @@ class CheckoutForm extends React.Component {
         <div className="row">
           <div className="col-12 d-flex place-order">
             <form onSubmit={this.handleSubmit}>
-              <div className="place-order-header">
+              <div className="d-flex place-order-header">
                 <h3>Checkout</h3>
                 <h4>Order Total: ${checkoutPrice}</h4>
               </div>
@@ -64,8 +98,14 @@ class CheckoutForm extends React.Component {
                     value={this.state.name}
                     placeholder='Name'
                     onChange={this.handleChange}
+                    onBlur={this.handleValidInput}
                   />
                 </p>
+                {
+                  this.state.validInput === 'name'
+                    ? <Invalid invalidField='name' />
+                    : null
+                }
                 <p className="checkout-section">
                   <label htmlFor="creditCard">
                     <span>Credit Card: </span>
@@ -77,8 +117,14 @@ class CheckoutForm extends React.Component {
                     value={this.state.creditCard}
                     placeholder='Credit Card'
                     onChange={this.handleChange}
+                    onBlur={this.handleValidInput}
                   />
                 </p>
+                {
+                  this.state.validInput === 'creditCard'
+                    ? <Invalid invalidField='credit card' />
+                    : null
+                }
                 <p className="checkout-section">
                   <label htmlFor="address">
                     <span>Address: </span>
@@ -90,9 +136,15 @@ class CheckoutForm extends React.Component {
                     rows="4"
                     value={this.state.address}
                     placeholder='Address'
-                    onChange={this.handleChange}>
+                    onChange={this.handleChange}
+                    onBlur={this.handleValidInput}>
                   </textarea>
                 </p>
+                {
+                  this.state.validInput === 'address'
+                    ? <Invalid invalidField='address' />
+                    : null
+                }
               </section>
             </form>
             <div className="checkout-footer">
@@ -108,11 +160,15 @@ class CheckoutForm extends React.Component {
                   >&lt;Return to shopping</div>
                 </div>
                 <div className="d-flex cart-footer-button">
-                  <button
-                    className="btn btn-primary"
-                    type="button"
-                    onClick={this.handleSubmit}
-                  >Checkout</button>
+                  {
+                    !validInput
+                      ? <button
+                        className="btn btn-primary"
+                        type="button"
+                        onClick={this.handleSubmit}
+                      >Checkout</button>
+                      : null
+                  }
                 </div>
               </div>
             </div>
@@ -121,6 +177,12 @@ class CheckoutForm extends React.Component {
       </>
     );
   }
+}
+
+function Invalid(props) {
+  return (
+    <div className="invalid-message">{`You must enter a(n) ${props.invalidField}`}</div>
+  );
 }
 
 export default CheckoutForm;

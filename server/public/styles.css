@@ -194,6 +194,10 @@ textarea:hover {
   align-items: center;
   flex-direction: column;
 }
+.place-order-header {
+  flex-direction: column;
+  align-items: center;
+}
 .checkout-section {
   display: flex;
   flex-direction: column;
@@ -226,6 +230,12 @@ textarea:hover {
   }
   .card {
     width: 91%;
+  }
+  .back-to-catalog {
+    font-size: 16px;
+  }
+  .cart-footer {
+    flex-direction: row;
   }
   .detail-container {
     flex-direction: column;
@@ -281,9 +291,6 @@ textarea:hover {
     padding: 0;
     width: 30%;
     font-size: 14px;
-  }
-  .cart-footer {
-  flex-direction: column;
   }
   .cart-footer-button {
     margin-left: 40px;
