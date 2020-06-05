@@ -30,7 +30,7 @@ body {
   border-radius: 0.25rem;
 }
 .shop-name {
-  font-size: 50px;
+  font-size: 25px;
 }
 .category {
   font-size: 20px;
@@ -114,9 +114,8 @@ textarea:hover {
   border-radius: 5px;
   padding: 2px 15px;
 }
-.detail-img,
-.cart-item-image-container {
-  width: 40%;
+.detail-img{
+  width: 100%;
 }
 .detail-img img {
   object-fit: contain;
@@ -126,7 +125,7 @@ textarea:hover {
 }
 .detail-name-price {
   padding: 0 20px;
-  width: 60%;
+  width: 100%;
   flex-direction: column;
   justify-content: center;
 }
@@ -164,6 +163,10 @@ textarea:hover {
   margin: 20px 40px;
   height: 350px;
   cursor: pointer;
+  flex-direction: column;
+}
+.cart-item-image-container {
+  width: 95%;
 }
 .cart-item-image-container img {
   object-fit: contain;
@@ -173,6 +176,7 @@ textarea:hover {
 .cart-item-description {
   justify-content: center;
   flex-direction: column;
+  overflow: scroll;
 }
 .cart-label {
   justify-content: center;
@@ -305,10 +309,10 @@ textarea:hover {
   .cart-footer-detail span {
     font-size: 20px;
   }
-  .cart-item-image-container,
+  /* .cart-item-image-container,
   .cart-item-description {
     width: 50%;
-  }
+  } */
   .added-modal {
     width: 315px;
   }
@@ -330,9 +334,8 @@ textarea:hover {
   .cart-footer-detail {
     width: 80%;
   }
-  .cart-item-image-container,
-  .cart-item-description {
-    width: 50%;
+  .detail-container {
+    flex-direction: column;
   }
   .added-modal {
     width: 510px;
@@ -354,17 +357,24 @@ textarea:hover {
   .header {
     width: 720px;
   }
+  .cart-item-container {
+    flex-direction: row;
+    padding: 5px;
+  }
   .cart-item-image-container{
     width: 40%;
   }
   .cart-item-description {
     width: 60%;
   }
-  .shop-name h1 {
-    font-size: 3.5rem;
+  .shop-name {
+    font-size: 2.5rem;
   }
   .added-modal {
     width: 690px;
+    flex-direction: row;
+  }
+  .detail-container {
     flex-direction: row;
   }
   .detail-image-name-price-container {
@@ -381,6 +391,9 @@ textarea:hover {
   }
   .shop-name h1 {
     font-size: 4.5rem;
+  }
+  .cart-item-container {
+    padding: 0 25px;
   }
   .added-modal {
     width: 930px;
