@@ -148,7 +148,7 @@ class CheckoutForm extends React.Component {
               </section>
             </form>
             <div className="checkout-footer">
-              <div className="d-flex m-0 cart-footer">
+              <div className="d-flex cart-footer">
                 <div
                   className="d-flex cart-footer-detail"
                   style={{ alignItems: 'center' }}
