@@ -29,14 +29,16 @@ The Fountain of Ink is a dynamic web marketplace for fountain pen enthusiasts to
 
 # Preview
 
-![Fountain of Ink](fountainOfInk.gif)
+#### Try the app here: [fountainofink.alexheo.com](https://fountainofink.alexheo.com)
 
-* [Fountain of Ink](https://fountainofink.alexheo.com)
+#### Preview of App:
+![Fountain of Ink](fountainOfInk.gif)
 
 # Development
 ## System Requirements
 * Node.js 10 or higher
 * npm 6 or higher
+* postgresql 10.14 or higher
 
 ## Getting Started
 1. Clone the repository:
@@ -48,8 +50,12 @@ cd fountain_of_ink
 ```
 npm install
 ```
-3. Start the express and postgresql servers:
+3. Import database:
+```
+npm run db:import
+```
+4. Start the express and postgresql servers:
 ```
 npm run dev
 ```
-4. Open <https://localhost:3000> in your browser
+5. Open <https://localhost:3000> in your browser
