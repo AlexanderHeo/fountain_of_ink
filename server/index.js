@@ -136,9 +136,7 @@ app.post('/api/cart', (req, res, next) => {
           res.status(201).json(result.rows[0]);
         });
     })
-    .catch(error => {
-      next(error);
-    });
+    .catch(error => next(error));
 });
 
 app.post('/api/orders', (req, res, next) => {
@@ -163,11 +161,18 @@ app.post('/api/orders', (req, res, next) => {
   const params = ([cartId, name, creditCard, shippingAddress]);
   db.query(sql, params)
     .then(result => {
+      const sqlClearCart = `
+        delete from "cartItems"
+        where "cartId" = $1;
+      `;
+      const paramsClearCart = [cartId];
+      db.query(sqlClearCart, paramsClearCart)
+        .then(result => result)
+        .catch(error => next(error));
+
       res.status(201).json(result.rows[0]);
     })
-    .catch(error => {
-      next(error);
-    });
+    .catch(error => next(error));
 });
 
 app.use('/api', (req, res, next) => {
