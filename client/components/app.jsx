@@ -2,6 +2,7 @@ import React from 'react';
 import CartSummary from './cart-summary';
 import Category from './category';
 import CheckoutForm from './checkout-form';
+import Modal from './disclaimer-modal';
 import Header from './header';
 import ProductDetail from './product-details';
 import ProductList from './product-list';
@@ -17,13 +18,15 @@ export default class App extends React.Component {
       },
       cart: [],
       category: 'pen',
-      cartQuantity: {}
+      cartQuantity: {},
+      modalOpen: true
     };
     this.setView = this.setView.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
     this.chooseCategory = this.chooseCategory.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
   }
 
   componentDidMount() {
@@ -116,10 +119,17 @@ export default class App extends React.Component {
     });
   }
 
+  handleCloseModal() {
+    this.setState({
+      modalOpen: false
+    });
+  }
+
   render() {
     const viewPageState = this.state.view.name;
     let viewPageComponent = '';
     let cartCount = 0;
+
     if (this.state.cart.length !== 0) {
       cartCount = this.state.cart.length;
     }
@@ -151,6 +161,7 @@ export default class App extends React.Component {
     }
     return (
       <div className="container">
+        {this.state.modalOpen ? <Modal close={this.handleCloseModal} /> : null}
         <Header
           cartItemCount={cartCount}
           onClick={this.setView}/>
