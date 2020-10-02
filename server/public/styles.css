@@ -8,6 +8,29 @@ body {
 ::-webkit-scrollbar {
     display: none;
 }
+
+.disclaimer-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(51, 51, 51, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  color: #eee;
+}
+.disclaimer {
+  width: 50%;
+  text-align: center;
+  padding: 30px;
+  background-color: #222;
+  border-radius: 20px;
+}
+
 .header {
   background-color: rgb(152, 146, 196);
   padding: 10px 24px;
