@@ -86,6 +86,10 @@ class CheckoutForm extends React.Component {
                 <h3>Checkout</h3>
                 <h4>Order Total: ${checkoutPrice}</h4>
               </div>
+              <div style={{ textAlign: 'center', border: '1px solid rgb(255, 95, 95)', borderRadius: '10px', margin: '20px', padding: '20px', color: 'rgb(255, 95, 95)' }}>
+                <h4>Reminder: this is a demo site</h4>
+                <h4>Please do not enter real personal information.</h4>
+              </div>
               <section>
                 <p className="checkout-section">
                   <label htmlFor="name">
