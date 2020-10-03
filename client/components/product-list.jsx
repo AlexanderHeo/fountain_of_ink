@@ -5,7 +5,7 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      wickedSales: [],
+      accessories: [],
       pens: [],
       inks: []
     };
@@ -15,12 +15,12 @@ class ProductList extends React.Component {
     fetch('/api/products')
       .then(res => res.json())
       .then(data => {
-        const wicked = [];
+        const accessory = [];
         const pen = [];
         const ink = [];
         data.map(x => {
-          if (x.category === 'wickedSales') {
-            wicked.push(x);
+          if (x.category === 'accessories') {
+            accessory.push(x);
           } else if (x.category === 'pen') {
             pen.push(x);
           } else if (x.category === 'ink') {
@@ -28,7 +28,7 @@ class ProductList extends React.Component {
           }
         });
         this.setState({
-          wickedSales: wicked,
+          accessories: accessory,
           pens: pen,
           inks: ink
         });
@@ -37,8 +37,8 @@ class ProductList extends React.Component {
 
   render() {
     let products = '';
-    if (this.props.category === 'wickedSales') {
-      products = this.state.wickedSales;
+    if (this.props.category === 'accessories') {
+      products = this.state.accessories;
     } else if (this.props.category === 'pen') {
       products = this.state.pens;
     } else if (this.props.category === 'ink') {
