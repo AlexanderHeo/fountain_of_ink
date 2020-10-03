@@ -17,8 +17,8 @@ function Category(props) {
         <button
           className='btn btn-secondary'
           type="button"
-          onClick={() => props.chooseCategory('wickedSales')}
-        >Wicked Sales</button>
+          onClick={() => props.chooseCategory('accessories')}
+        >Accessories</button>
       </div>
     </div>
   );
