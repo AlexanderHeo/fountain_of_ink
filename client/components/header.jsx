@@ -6,12 +6,10 @@ function Header(props) {
   return (
     <div className="row">
       <div className="header">
-        <button
-          className="logo"
-          type="button"
-          onClick={() => props.onClick('catalog', {}, false)}>
+        <div
+          className="logo">
           <img src="/images/fountain-pen.png" alt="fountain pen"/>
-        </button>
+        </div>
         <div className="shop-name"><h1>Fountain of Ink</h1></div>
         <div
           className="d-flex cart"
