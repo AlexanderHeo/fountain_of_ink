@@ -5,6 +5,9 @@ body {
 .root {
   margin: auto;
 }
+.noscroll {
+	overflow: hidden;
+}
 ::-webkit-scrollbar {
     display: none;
 }
@@ -237,8 +240,43 @@ textarea:hover {
 .modal-button-container .btn {
   margin: 0 10px;
 }
+.discContainer {
+	position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  z-index: 100;
+  background-color: rgba(51, 51, 51, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  color: '#eee'
+}
+.contentStyle {
+  width: 50%;
+  text-align: center;
+  padding: 30px;
+  background-color: #222;
+  border-radius: 20px
+}
+.contentStyle p {
+	color: #eee;
+}
+.buttonStyle {
+	padding: 10px 20px;
+	border-radius: 10px;
+	margin-top: 20px
+}
+
+/* ************* */
 /* media queries */
+/* ************* */
 @media only screen and (max-width: 575px) {
+	.contentStyle {
+		width: 90%;
+	}
   .logo {
     width: 40px;
     height: 40px;
@@ -328,7 +366,10 @@ textarea:hover {
   }
 }
 @media only screen and (min-width: 576px) {
-  .card {
+	.contentStyle {
+		width: 80%;
+	}
+	.card {
     width: 91%;
   }
   .place-order,
@@ -360,6 +401,9 @@ textarea:hover {
   }
 }
 @media only screen and (min-width: 768px) {
+	.contentStyle {
+		width: 70%;
+	}
   .card {
     width: 43%;
   }
@@ -392,6 +436,9 @@ textarea:hover {
   }
 }
 @media only screen and (min-width: 992px) {
+	.contentStyle {
+		width: 50%;
+	}
   .card{
     width: 28%;
   }
