@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Category(props) {
+const category = props => {
   return (
     <div className="row">
       <div className="col-12 category">
@@ -22,6 +22,6 @@ function Category(props) {
       </div>
     </div>
   );
-}
+};
 
-export default Category;
+export default category;

@@ -3,7 +3,7 @@ import BackToCatalog from './back-to-catalog';
 import CartSummaryItem from './cart-summary-item';
 import CartTotalPrice from './cart-total-price';
 
-function CartSummary(props) {
+const cartSummary = props => {
   const cart = props.cart;
   if (cart.length === 0) {
     return (
@@ -40,6 +40,6 @@ function CartSummary(props) {
       </div>
     );
   }
-}
+};
 
-export default CartSummary;
+export default cartSummary;

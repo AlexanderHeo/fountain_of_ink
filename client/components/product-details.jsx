@@ -1,26 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import AddedToCart from './added-to-cart';
 import BackToCart from './back-to-cart';
 import BackToCatalog from './back-to-catalog';
 
-class ProductDetails extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      product: '',
-      addedToCart: false
-    };
-    this.handleAddedToCart = this.handleAddedToCart.bind(this);
-  }
+class ProductDetails extends Component {
+state = {
+  product: '',
+  addedToCart: false
+};
 
-  componentDidMount() {
-    const productId = this.props.productId;
-    fetch(`/api/products/${productId}`)
-      .then(res => res.json())
-      .then(data => this.setState({ product: data }));
-  }
+componentDidMount() {
+  const productId = this.props.productId;
+  fetch(`/api/products/${productId}`)
+    .then(res => res.json())
+    .then(data => this.setState({ product: data }));
+}
 
-  handleAddedToCart() {
+  handleAddedToCart = () => {
     this.setState({ addedToCart: true });
   }
 
@@ -67,12 +63,7 @@ function NoDetails() {
 }
 
 class Details extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick() {
+  handleClick = () => {
     this.props.addToCart(this.props.product);
     this.props.handleAddedToCart();
   }

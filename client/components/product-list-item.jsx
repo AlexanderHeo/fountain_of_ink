@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ProductListItem(props) {
+const productListItem = props => {
   const name = props.product.name;
   const price = `$${(props.product.price * 0.01).toFixed(2)}`;
   const shortDescript = props.product.shortDescription;
@@ -16,6 +16,6 @@ function ProductListItem(props) {
       </div>
     </div>
   );
-}
+};
 
-export default ProductListItem;
+export default productListItem;

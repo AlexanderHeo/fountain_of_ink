@@ -2,7 +2,7 @@ import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-function AddedToCart(props) {
+const addedToCart = props => {
   const product = props.product;
   return (
     <>
@@ -39,6 +39,6 @@ function AddedToCart(props) {
       </div>
     </>
   );
-}
+};
 
-export default AddedToCart;
+export default addedToCart;

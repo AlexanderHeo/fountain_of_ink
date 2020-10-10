@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BackToCart(props) {
+const backToCart = props => {
   return (
     <div className="mb-2 row">
       <div
@@ -9,6 +9,6 @@ function BackToCart(props) {
       >&lt;Back to cart</div>
     </div>
   );
-}
+};
 
-export default BackToCart;
+export default backToCart;

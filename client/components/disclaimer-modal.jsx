@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Disclaimer extends Component {
+export default class Disclaimer extends Component {
   componentDidMount() {
     document.body.classList.add('noscroll');
   }
@@ -22,5 +22,3 @@ class Disclaimer extends Component {
     );
   }
 }
-
-export default Disclaimer;

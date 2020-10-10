@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CartTotalPrice(props) {
+const cartTotalPrice = props => {
   const cart = props.cart;
   const ttl = [];
   cart.map(x => ttl.push(x.price));
@@ -11,6 +11,6 @@ function CartTotalPrice(props) {
       <span>Cart Total: ${totalPrice}</span>
     </div>
   );
-}
+};
 
-export default CartTotalPrice;
+export default cartTotalPrice;
