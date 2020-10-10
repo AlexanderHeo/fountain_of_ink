@@ -2,7 +2,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 
-function Header(props) {
+const header = props => {
   return (
     <div className="row">
       <div className="header">
@@ -25,6 +25,6 @@ function Header(props) {
       </div>
     </div>
   );
-}
+};
 
-export default Header;
+export default header;

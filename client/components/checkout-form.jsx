@@ -1,21 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import BackToCatalog from './back-to-catalog';
 
-class CheckoutForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      creditCard: '',
-      address: '',
-      validInput: ''
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleValidInput = this.handleValidInput.bind(this);
-  }
+class CheckoutForm extends Component {
+state = {
+  name: '',
+  creditCard: '',
+  address: '',
+  validInput: ''
+};
 
-  handleChange(event) {
+  handleChange = event => {
     const target = event.target;
     const name = target.name;
     const value = target.value;
@@ -25,7 +19,7 @@ class CheckoutForm extends React.Component {
     });
   }
 
-  handleSubmit(event) {
+  handleSubmit = event => {
     event.preventDefault();
     if (this.state.validInput) {
       this.setState({
@@ -61,7 +55,7 @@ class CheckoutForm extends React.Component {
     }
   }
 
-  handleValidInput(event) {
+  handleValidInput = event => {
     const name = event.target.name;
     if (this.state.validInput === name) {
       this.setState({

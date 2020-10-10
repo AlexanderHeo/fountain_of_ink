@@ -1,6 +1,6 @@
 import React from 'react';
 
-function BackToCatalog(props) {
+const backToCatalog = props => {
   return (
     <div className="mb-2 row">
       <div
@@ -9,6 +9,6 @@ function BackToCatalog(props) {
       >&lt;Back to catalog</div>
     </div>
   );
-}
+};
 
-export default BackToCatalog;
+export default backToCatalog;

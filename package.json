@@ -56,7 +56,8 @@
       "semi": [
         "error",
         "always"
-      ],
+			],
+			"smart-tabs": 0,
       "padded-blocks": 0,
       "arrow-parens": [
         "error",
@@ -101,6 +102,8 @@
   },
   "devDependencies": {
     "@babel/core": "7.8.0",
+    "@babel/eslint-parser": "7.11.5",
+    "@babel/plugin-proposal-class-properties": "7.10.4",
     "@babel/plugin-transform-react-jsx": "7.8.0",
     "babel-eslint": "10.0.3",
     "babel-loader": "8.0.6",
