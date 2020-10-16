@@ -28,9 +28,9 @@ const reducer = (state = initialState, action) => {
         category: action.category,
         view: {
           ...state.view,
-          name: action.view.name,
-          params: action.view.params,
-          fromCart: action.view.fromCart
+          name: 'catalog',
+          params: {},
+          fromCart: false
         }
       };
     }
