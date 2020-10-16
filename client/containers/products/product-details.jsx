@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import AddedToCart from './added-to-cart';
-import BackToCart from './back-to-cart';
-import BackToCatalog from './back-to-catalog';
+import AddedToCart from '../../components/cart/added-to-cart';
+import BackToCart from '../../components/navigation/back-to-cart';
+import BackToCatalog from '../../components/navigation/back-to-catalog';
 
 class ProductDetails extends Component {
 state = {
