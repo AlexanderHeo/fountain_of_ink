@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CartSummary from '../components/cart/cart-summary';
 import Category from '../components/navigation/category';
 import Modal from '../components/navigation/disclaimer-modal';
 import Header from '../components/navigation/header';
+import { CHOOSE_CATEGORY, SET_VIEW } from '../store/actions/actionTypes';
 import CheckoutForm from './checkout/checkout-form';
 import ProductDetail from './products/product-details';
 import ProductList from './products/product-list';
 
 class App extends Component {
 state = {
-  view: {
-    name: 'catalog',
-    params: {},
-    fromCart: false
-  },
+  // view: {
+  //   name: 'catalog',
+  //   params: {},
+  //   fromCart: false
+  // },
   cart: [],
-  category: 'pen',
+  // category: 'pen',
   cartQuantity: {},
   modalOpen: true
 };
@@ -59,12 +61,6 @@ getCartItems = () => {
     });
 }
 
-setView = (name, params, fromCart) => {
-  this.setState({
-    view: { name: name, params: params, fromCart: fromCart }
-  });
-}
-
 addToCart = product => {
   // product is an object
   fetch('/api/cart', {
@@ -99,15 +95,23 @@ placeOrder = customer => {
     }));
 }
 
+setView = (name, params, fromCart) => {
+  this.props.onSetView({ name: name, params: params, fromCart: fromCart });
+  // this.setState({
+  //   view: { name: name, params: params, fromCart: fromCart }
+  // });
+}
+
 chooseCategory = category => {
-  this.setState({
-    category: category,
-    view: {
-      name: 'catalog',
-      params: {},
-      fromCart: false
-    }
-  });
+  this.props.onChooseCategory(category, { name: 'catalog', params: {}, fromCart: false });
+  // this.setState({
+  //   category: category,
+  //   view: {
+  //     name: 'catalog',
+  //     params: {},
+  //     fromCart: false
+  //   }
+  // });
 }
 
 handleCloseModal = () => {
@@ -117,7 +121,7 @@ handleCloseModal = () => {
 }
 
 render() {
-  const viewPageState = this.state.view.name;
+  const viewPageState = this.props.view.name;
   let viewPageComponent = '';
   let cartCount = 0;
 
@@ -126,27 +130,27 @@ render() {
   }
   if (viewPageState === 'catalog') {
     viewPageComponent = <ProductList
-      onClick={this.setView}
-      category={this.state.category}
+      onClick={this.props.onSetView}
+      category={this.props.category}
     />;
   } else if (viewPageState === 'details') {
     viewPageComponent = <ProductDetail
-      onClick={this.setView}
+      onClick={this.props.onSetView}
       addToCart={this.addToCart}
-      productId={this.state.view.params.productId}
-      fromCart={this.state.view.fromCart}
+      productId={this.props.view.params.productId}
+      fromCart={this.props.view.fromCart}
     />;
   } else if (viewPageState === 'cart') {
     viewPageComponent = <CartSummary
       cart={this.state.cart}
-      onClick={this.setView}
-      productId={this.state.view.params.productId}
+      onClick={this.props.onSetView}
+      productId={this.props.view.params.productId}
       cartQuantity={this.state.cartQuantity}
     />;
   } else if (viewPageState === 'checkout') {
     viewPageComponent = <CheckoutForm
       cart={this.state.cart}
-      onClick={this.setView}
+      onClick={this.props.onSetView}
       placeOrder={this.placeOrder}
     />;
   }
@@ -155,7 +159,7 @@ render() {
       {this.state.modalOpen ? <Modal close={this.handleCloseModal} /> : null}
       <Header
         cartItemCount={cartCount}
-        onClick={this.setView}/>
+        onClick={this.props.onSetView}/>
       <Category
         chooseCategory={this.chooseCategory}/>
       {viewPageComponent}
@@ -164,4 +168,18 @@ render() {
 }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    view: state.view,
+    category: state.category
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetView: (name, params, fromCart) => dispatch({ type: SET_VIEW, name: name, params: params, fromCart: fromCart }),
+    onChooseCategory: (category, view) => dispatch({ type: CHOOSE_CATEGORY, category: category, view: view })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
