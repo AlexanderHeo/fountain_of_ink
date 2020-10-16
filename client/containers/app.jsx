@@ -4,20 +4,14 @@ import CartSummary from '../components/cart/cart-summary';
 import Category from '../components/navigation/category';
 import Modal from '../components/navigation/disclaimer-modal';
 import Header from '../components/navigation/header';
-import { CHOOSE_CATEGORY, SET_VIEW } from '../store/actions/actionTypes';
+import * as actionCreators from '../store/actions/actionCreators';
 import CheckoutForm from './checkout/checkout-form';
 import ProductDetail from './products/product-details';
 import ProductList from './products/product-list';
 
 class App extends Component {
 state = {
-  // view: {
-  //   name: 'catalog',
-  //   params: {},
-  //   fromCart: false
-  // },
   cart: [],
-  // category: 'pen',
   cartQuantity: {},
   modalOpen: true
 };
@@ -97,27 +91,14 @@ placeOrder = customer => {
 
 setView = (name, params, fromCart) => {
   this.props.onSetView({ name: name, params: params, fromCart: fromCart });
-  // this.setState({
-  //   view: { name: name, params: params, fromCart: fromCart }
-  // });
 }
 
 chooseCategory = category => {
   this.props.onChooseCategory(category, { name: 'catalog', params: {}, fromCart: false });
-  // this.setState({
-  //   category: category,
-  //   view: {
-  //     name: 'catalog',
-  //     params: {},
-  //     fromCart: false
-  //   }
-  // });
 }
 
 handleCloseModal = () => {
-  this.setState({
-    modalOpen: false
-  });
+  this.setState({ modalOpen: false });
 }
 
 render() {
@@ -177,8 +158,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSetView: (name, params, fromCart) => dispatch({ type: SET_VIEW, name: name, params: params, fromCart: fromCart }),
-    onChooseCategory: (category, view) => dispatch({ type: CHOOSE_CATEGORY, category: category, view: view })
+    onSetView: (name, params, fromCart) => dispatch(actionCreators.setView(name, params, fromCart)),
+    onChooseCategory: category => dispatch(actionCreators.chooseCategory(category))
   };
 };
 
