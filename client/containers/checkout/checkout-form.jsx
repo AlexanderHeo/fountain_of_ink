@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BackToCatalog from './back-to-catalog';
+import BackToCatalog from '../../components/navigation/back-to-catalog';
 
 class CheckoutForm extends Component {
 state = {

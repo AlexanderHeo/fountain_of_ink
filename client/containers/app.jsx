@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import CartSummary from './cart-summary';
-import Category from './category';
-import CheckoutForm from './checkout-form';
-import Modal from './disclaimer-modal';
-import Header from './header';
-import ProductDetail from './product-details';
-import ProductList from './product-list';
+import CartSummary from '../components/cart/cart-summary';
+import Category from '../components/navigation/category';
+import Modal from '../components/navigation/disclaimer-modal';
+import Header from '../components/navigation/header';
+import CheckoutForm from './checkout/checkout-form';
+import ProductDetail from './products/product-details';
+import ProductList from './products/product-list';
 
 class App extends Component {
 state = {

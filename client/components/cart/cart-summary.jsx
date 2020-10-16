@@ -1,5 +1,5 @@
 import React from 'react';
-import BackToCatalog from './back-to-catalog';
+import BackToCatalog from '../navigation/back-to-catalog';
 import CartSummaryItem from './cart-summary-item';
 import CartTotalPrice from './cart-total-price';
 
