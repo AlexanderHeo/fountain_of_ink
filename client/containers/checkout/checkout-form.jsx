@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import BackToCatalog from './back-to-catalog';
+import BackToCatalog from '../../components/navigation/back-to-catalog';
 
 class CheckoutForm extends Component {
 state = {
@@ -69,7 +69,14 @@ state = {
     const cart = this.props.cart;
     const allPrice = [];
     cart.map(x => { allPrice.push(x.price); });
-    const checkoutPrice = ((allPrice.reduce((acc, cur) => acc + cur)) * 0.01).toFixed(2);
+    let checkoutPrice = 0;
+    if (allPrice.length > 1) {
+      checkoutPrice = ((allPrice.reduce((acc, cur) => acc + cur), 0) * 0.01).toFixed(2);
+    } else if (allPrice.length === 0) {
+      checkoutPrice = 0;
+    } else {
+      checkoutPrice = (allPrice[0] * 0.01).toFixed(2);
+    }
     return (
       <>
         <BackToCatalog onClick={this.props.onClick}/>
