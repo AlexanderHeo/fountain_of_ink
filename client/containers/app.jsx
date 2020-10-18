@@ -113,6 +113,7 @@ render() {
     viewPageComponent = <ProductList
       onClick={this.props.onSetView}
       category={this.props.category}
+      loading={this.props.loading}
     />;
   } else if (viewPageState === 'details') {
     viewPageComponent = <ProductDetail
@@ -151,8 +152,8 @@ render() {
 
 const mapStateToProps = state => {
   return {
-    view: state.view,
-    category: state.category
+    view: state.viewReducer.view,
+    category: state.viewReducer.category
   };
 };
 
