@@ -4,7 +4,7 @@ import CartSummary from '../components/cart/cart-summary';
 import Category from '../components/navigation/category';
 import Modal from '../components/navigation/disclaimer-modal';
 import Header from '../components/navigation/header';
-import * as actionCreators from '../store/actions/actionCreators';
+import * as actionCreators from '../store/actions/viewActionCreators';
 import CheckoutForm from './checkout/checkout-form';
 import ProductDetail from './products/product-details';
 import ProductList from './products/product-list';
