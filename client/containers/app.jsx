@@ -13,7 +13,7 @@ class App extends Component {
 state = {
   cart: [],
   cartQuantity: {},
-  modalOpen: true
+  modalOpen: false
 };
 
 componentDidMount() {

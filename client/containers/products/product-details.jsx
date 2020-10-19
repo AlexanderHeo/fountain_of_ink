@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import AddedToCart from '../../components/cart/added-to-cart';
 import BackToCart from '../../components/navigation/back-to-cart';
 import BackToCatalog from '../../components/navigation/back-to-catalog';
+import * as productDetailActionCreator from '../../store/actions/productDetailActionCreator';
 
 class ProductDetails extends Component {
 state = {
@@ -10,18 +12,20 @@ state = {
 };
 
 componentDidMount() {
-  const productId = this.props.productId;
-  fetch(`/api/products/${productId}`)
-    .then(res => res.json())
-    .then(data => this.setState({ product: data }));
+  this.props.onProductDetailFetch(this.props.productId);
+  // const productId = this.props.productId;
+  // fetch(`/api/products/${productId}`)
+  //   .then(res => res.json())
+  //   .then(data => this.setState({ product: data }));
 }
 
   handleAddedToCart = () => {
-    this.setState({ addedToCart: true });
+    this.props.onHandleAddedToCart();
+    // this.setState({ addedToCart: true });
   }
 
   render() {
-    if (!this.state.addedToCart) {
+    if (!this.props.addedToCart) {
       let toCart = '';
       if (!this.props.fromCart) {
         toCart = null;
@@ -29,7 +33,7 @@ componentDidMount() {
         toCart = <BackToCart onClick={() => this.props.onClick('cart', {}, false)} />;
       }
       return (
-        !this.state.product
+        !this.props.product
           ? <>
             <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
             <NoDetails />
@@ -38,7 +42,7 @@ componentDidMount() {
             <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
             {toCart}
             <Details
-              product={this.state.product}
+              product={this.props.product}
               onClick={this.props.onClick}
               addToCart={this.props.addToCart}
               handleAddedToCart={this.handleAddedToCart}
@@ -47,7 +51,7 @@ componentDidMount() {
       );
     } else {
       return <AddedToCart
-        product={this.state.product}
+        product={this.props.product}
         onClick={this.props.onClick}
       />;
     }
@@ -110,4 +114,19 @@ class Details extends React.Component {
   }
 }
 
-export default ProductDetails;
+const mapStateToProps = state => {
+  return {
+    product: state.productDetailReducer.product,
+    addedToCart: state.productDetailReducer.addedToCart,
+    loading: state.productDetailReducer.loading
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onProductDetailFetch: productId => dispatch(productDetailActionCreator.productDetailFetch(productId)),
+    onHandleAddedToCart: () => dispatch(productDetailActionCreator.handleAddedToCart())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
