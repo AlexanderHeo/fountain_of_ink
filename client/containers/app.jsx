@@ -112,17 +112,10 @@ render() {
     cartCount = this.state.cart.length;
   }
   if (viewPageState === 'catalog') {
-    viewPageComponent = <ProductList
-      onClick={this.props.onSetView}
-      category={this.props.category}
-      loading={this.props.loading}
-    />;
+    viewPageComponent = <ProductList />;
   } else if (viewPageState === 'details') {
     viewPageComponent = <ProductDetails
-      onClick={this.props.onSetView}
       addToCart={this.addToCart}
-      productId={this.props.view.params.productId}
-      fromCart={this.props.view.fromCart}
     />;
   } else if (viewPageState === 'cart') {
     viewPageComponent = <CartSummary
