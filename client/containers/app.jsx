@@ -4,19 +4,21 @@ import CartSummary from '../components/cart/cart-summary';
 import Category from '../components/navigation/category';
 import Modal from '../components/navigation/disclaimer-modal';
 import Header from '../components/navigation/header';
-import * as actionCreators from '../store/actions/actionCreators';
+import * as productsActionCreators from '../store/actions/productsActionCreator';
+import * as viewActionCreators from '../store/actions/viewActionCreators';
 import CheckoutForm from './checkout/checkout-form';
-import ProductDetail from './products/product-details';
+import ProductDetails from './products/product-details';
 import ProductList from './products/product-list';
 
 class App extends Component {
 state = {
   cart: [],
   cartQuantity: {},
-  modalOpen: true
+  modalOpen: false
 };
 
 componentDidMount() {
+  this.props.onProductFetch();
   this.getCartItems();
 }
 
@@ -113,9 +115,10 @@ render() {
     viewPageComponent = <ProductList
       onClick={this.props.onSetView}
       category={this.props.category}
+      loading={this.props.loading}
     />;
   } else if (viewPageState === 'details') {
-    viewPageComponent = <ProductDetail
+    viewPageComponent = <ProductDetails
       onClick={this.props.onSetView}
       addToCart={this.addToCart}
       productId={this.props.view.params.productId}
@@ -151,15 +154,16 @@ render() {
 
 const mapStateToProps = state => {
   return {
-    view: state.view,
-    category: state.category
+    view: state.viewReducer.view,
+    category: state.viewReducer.category
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSetView: (name, params, fromCart) => dispatch(actionCreators.setView(name, params, fromCart)),
-    onChooseCategory: category => dispatch(actionCreators.chooseCategory(category))
+    onSetView: (name, params, fromCart) => dispatch(viewActionCreators.setView(name, params, fromCart)),
+    onChooseCategory: category => dispatch(viewActionCreators.chooseCategory(category)),
+    onProductFetch: () => dispatch(productsActionCreators.productFetch())
   };
 };
 
