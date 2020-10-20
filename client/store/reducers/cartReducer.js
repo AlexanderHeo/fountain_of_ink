@@ -17,9 +17,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         cart: action.cart
       };
-    case actionTypes.PLACE_ORDER:
+    case actionTypes.PLACE_ORDER_SUCCESS:
       return {
-
+        ...state,
+        cart: []
       };
     default:
       return state;

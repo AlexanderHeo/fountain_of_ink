@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import BackToCatalog from '../../components/navigation/back-to-catalog';
+import * as cartActionCreator from '../../store/actions/cartActionCreator';
 import * as viewActionCreator from '../../store/actions/viewActionCreators';
 
 class CheckoutForm extends Component {
@@ -46,7 +47,8 @@ state = {
           creditCard: this.state.creditCard,
           shippingAddress: this.state.address
         };
-        this.props.placeOrder(customerInfo);
+        this.props.onPlaceOrder(customerInfo);
+        this.props.onSetView('catalog', {}, false);
         this.setState({
           name: '',
           creditCard: '',
@@ -194,7 +196,8 @@ const mapStateToProps = state => {
 
 const mapDispatchtoProps = dispatch => {
   return {
-    onSetView: (name, params, fromCart) => dispatch(viewActionCreator.setView(name, params, fromCart))
+    onSetView: (name, params, fromCart) => dispatch(viewActionCreator.setView(name, params, fromCart)),
+    onPlaceOrder: customer => dispatch(cartActionCreator.placeOrder(customer))
   };
 };
 
