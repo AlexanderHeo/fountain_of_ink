@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class ProductDetail extends React.Component {
   handleClick = () => {
@@ -48,4 +49,10 @@ class ProductDetail extends React.Component {
   }
 }
 
-export default ProductDetail;
+const mapStateToProps = state => {
+  return {
+    product: state.productDetailReducer.product
+  };
+};
+
+export default connect(mapStateToProps)(ProductDetail);

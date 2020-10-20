@@ -18,7 +18,7 @@ class ProductDetails extends Component {
 
   render() {
     if (!this.props.addedToCart) {
-      let toCart = '';
+      let toCart = null;
       if (!this.props.view.fromCart) {
         toCart = null;
       } else if (this.props.view.fromCart) {
@@ -34,8 +34,6 @@ class ProductDetails extends Component {
             <BackToCatalog onClick={() => this.props.onSetView('catalog', {}, false)} />
             {toCart}
             <ProductDetail
-              product={this.props.product}
-              onClick={this.props.onSetView}
               addToCart={this.props.addToCart}
               handleAddedToCart={this.handleAddedToCart}
             />
