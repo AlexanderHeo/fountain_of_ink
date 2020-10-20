@@ -11,17 +11,20 @@ const reducer = (state = initialState, action) => {
     case actionTypes.PRODUCT_DETAIL_FETCH_START:
       return {
         ...state,
+        addedToCart: false,
         loading: true
       };
     case actionTypes.PRODUCT_DETAIL_FETCH_SUCCESS:
       return {
         ...state,
         product: action.product,
+        addedToCart: false,
         loading: false
       };
     case actionTypes.PRODUCT_DETAIL_FETCH_FAIL:
       return {
         ...state,
+        addedToCart: false,
         loading: false
       };
     case actionTypes.HANDLE_ADDED_TO_CART:
