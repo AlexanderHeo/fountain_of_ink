@@ -1,27 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import AddedToCart from '../../components/cart/added-to-cart';
 import BackToCart from '../../components/navigation/back-to-cart';
 import BackToCatalog from '../../components/navigation/back-to-catalog';
+import ProductDetail from '../../components/products/product-detail';
+import * as productDetailActionCreator from '../../store/actions/productDetailActionCreator';
 
 class ProductDetails extends Component {
-state = {
-  product: '',
-  addedToCart: false
-};
-
-componentDidMount() {
-  const productId = this.props.productId;
-  fetch(`/api/products/${productId}`)
-    .then(res => res.json())
-    .then(data => this.setState({ product: data }));
-}
+  componentDidMount() {
+    this.props.onProductDetailFetch(this.props.productId);
+  }
 
   handleAddedToCart = () => {
-    this.setState({ addedToCart: true });
+    this.props.onHandleAddedToCart();
   }
 
   render() {
-    if (!this.state.addedToCart) {
+    if (!this.props.addedToCart) {
       let toCart = '';
       if (!this.props.fromCart) {
         toCart = null;
@@ -29,7 +24,7 @@ componentDidMount() {
         toCart = <BackToCart onClick={() => this.props.onClick('cart', {}, false)} />;
       }
       return (
-        !this.state.product
+        !this.props.product
           ? <>
             <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
             <NoDetails />
@@ -37,8 +32,8 @@ componentDidMount() {
           : <>
             <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
             {toCart}
-            <Details
-              product={this.state.product}
+            <ProductDetail
+              product={this.props.product}
               onClick={this.props.onClick}
               addToCart={this.props.addToCart}
               handleAddedToCart={this.handleAddedToCart}
@@ -47,7 +42,7 @@ componentDidMount() {
       );
     } else {
       return <AddedToCart
-        product={this.state.product}
+        product={this.props.product}
         onClick={this.props.onClick}
       />;
     }
@@ -62,52 +57,19 @@ function NoDetails() {
   );
 }
 
-class Details extends React.Component {
-  handleClick = () => {
-    this.props.addToCart(this.props.product);
-    this.props.handleAddedToCart();
-  }
+const mapStateToProps = state => {
+  return {
+    product: state.productDetailReducer.product,
+    addedToCart: state.productDetailReducer.addedToCart,
+    loading: state.productDetailReducer.loading
+  };
+};
 
-  render() {
-    const name = this.props.product.name;
-    const price = `$${(this.props.product.price * 0.01).toFixed(2)}`;
-    const image = this.props.product.image;
-    const shortDescription = this.props.product.shortDescription;
-    const longDescription = this.props.product.longDescription;
-    const detailOrCart = (
-      <div className="details-main">
-        <div className="d-flex detail-container">
-          <div className="d-flex detail-img">
-            <img src={image} alt="{name}" />
-          </div>
-          <div className="d-flex detail-name-price">
-            <div className="d-flex name-price">
-              <h4 className="name">{name}</h4>
-              <p className="price">{price}</p>
-            </div>
-            <div className="d-flex price-description">
-              <p className="short-description">{shortDescription}</p>
-              <div className="button">
-                <button
-                  className="btn btn-primary"
-                  type="button"
-                  onClick={this.handleClick}
-                >Add to Cart</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="">
-          <div className="long-description">{longDescription}</div>
-        </div>
-      </div>
-    );
-    return (
-      <div>
-        {detailOrCart}
-      </div>
-    );
-  }
-}
+const mapDispatchToProps = dispatch => {
+  return {
+    onProductDetailFetch: productId => dispatch(productDetailActionCreator.productDetailFetch(productId)),
+    onHandleAddedToCart: () => dispatch(productDetailActionCreator.handleAddedToCart())
+  };
+};
 
-export default ProductDetails;
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetails);
