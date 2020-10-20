@@ -7,22 +7,12 @@ import ProductDetail from '../../components/products/product-detail';
 import * as productDetailActionCreator from '../../store/actions/productDetailActionCreator';
 
 class ProductDetails extends Component {
-state = {
-  product: '',
-  addedToCart: false
-};
-
-componentDidMount() {
-  this.props.onProductDetailFetch(this.props.productId);
-  // const productId = this.props.productId;
-  // fetch(`/api/products/${productId}`)
-  //   .then(res => res.json())
-  //   .then(data => this.setState({ product: data }));
-}
+  componentDidMount() {
+    this.props.onProductDetailFetch(this.props.productId);
+  }
 
   handleAddedToCart = () => {
     this.props.onHandleAddedToCart();
-    // this.setState({ addedToCart: true });
   }
 
   render() {
