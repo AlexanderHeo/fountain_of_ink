@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as viewActionCreators from '../../store/actions/viewActionCreators';
 
 const category = props => {
   return (
@@ -7,21 +9,27 @@ const category = props => {
         <button
           className = 'btn btn-secondary'
           type="button"
-          onClick={() => props.chooseCategory('pen')}
+          onClick={() => props.onChooseCategory('pen')}
         >Fountain Pens</button>
         <button
           className='btn btn-secondary'
           type="button"
-          onClick={() => props.chooseCategory('ink')}
+          onClick={() => props.onChooseCategory('ink')}
         >Bottled Ink</button>
         <button
           className='btn btn-secondary'
           type="button"
-          onClick={() => props.chooseCategory('accessories')}
+          onClick={() => props.onChooseCategory('accessories')}
         >Accessories</button>
       </div>
     </div>
   );
 };
 
-export default category;
+const mapDispatchToProps = dispatch => {
+  return {
+    onChooseCategory: category => dispatch(viewActionCreators.chooseCategory(category))
+  };
+};
+
+export default connect(null, mapDispatchToProps)(category);

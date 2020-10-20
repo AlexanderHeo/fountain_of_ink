@@ -91,14 +91,6 @@ placeOrder = customer => {
     }));
 }
 
-setView = (name, params, fromCart) => {
-  this.props.onSetView({ name: name, params: params, fromCart: fromCart });
-}
-
-chooseCategory = category => {
-  this.props.onChooseCategory(category, { name: 'catalog', params: {}, fromCart: false });
-}
-
 handleCloseModal = () => {
   this.setState({ modalOpen: false });
 }
@@ -137,8 +129,7 @@ render() {
       <Header
         cartItemCount={cartCount}
         onClick={this.props.onSetView}/>
-      <Category
-        chooseCategory={this.chooseCategory}/>
+      <Category/>
       {viewPageComponent}
     </div>
   );
