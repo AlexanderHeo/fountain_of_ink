@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as viewActionCreators from '../../store/actions/viewActionCreators.js';
 import BackToCatalog from '../navigation/back-to-catalog';
 import CartSummaryItem from './cart-summary-item';
 import CartTotalPrice from './cart-total-price';
@@ -8,21 +10,21 @@ const cartSummary = props => {
   if (cart.length === 0) {
     return (
       <>
-        <BackToCatalog onClick={props.onClick}/>
+        <BackToCatalog onClick={props.onSetView}/>
         <h1>Nothing in the cart.</h1>
       </>
     );
   } else {
     return (
       <div>
-        <BackToCatalog onClick={props.onClick} />
+        <BackToCatalog onClick={props.onSetView} />
         <div className="d-flex shop-name cart-label">Shopping Cart</div>
         {
           cart.map(x => {
             return <CartSummaryItem
               key={x.cartItemId}
               item={x}
-              view={props.onClick}
+              view={props.onSetView}
               cartQuantity={props.cartQuantity}
             />;
           })
@@ -33,7 +35,7 @@ const cartSummary = props => {
             <button
               className="btn btn-primary"
               type="button"
-              onClick={() => props.onClick('checkout', {}, false)}
+              onClick={() => props.onSetView('checkout', {}, false)}
             >Checkout</button>
           </div>
         </div>
@@ -42,4 +44,18 @@ const cartSummary = props => {
   }
 };
 
-export default cartSummary;
+const mapStateToProps = state => {
+  return {
+    cart: state.cartReducer.cart,
+    cartQuantity: state.cartReducer.cartQuantity,
+    view: state.viewReducer.view
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSetView: (name, params, fromCart) => dispatch(viewActionCreators.setView(name, params, fromCart))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(cartSummary);

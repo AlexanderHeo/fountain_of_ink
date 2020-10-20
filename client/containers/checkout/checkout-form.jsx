@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import BackToCatalog from '../../components/navigation/back-to-catalog';
+import * as viewActionCreator from '../../store/actions/viewActionCreators';
 
 class CheckoutForm extends Component {
 state = {
@@ -68,7 +70,7 @@ state = {
     const validInput = this.state.validInput;
     const cart = this.props.cart;
     const allPrice = [];
-    cart.map(x => { allPrice.push(x.price); });
+    cart.forEach(x => { allPrice.push(x.price); });
     let checkoutPrice = 0;
     if (allPrice.length > 1) {
       checkoutPrice = ((allPrice.reduce((acc, cur) => acc + cur), 0) * 0.01).toFixed(2);
@@ -79,7 +81,7 @@ state = {
     }
     return (
       <>
-        <BackToCatalog onClick={this.props.onClick}/>
+        <BackToCatalog onClick={this.props.onSetView}/>
         <div className="row">
           <div className="col-12 d-flex place-order">
             <form onSubmit={this.handleSubmit}>
@@ -160,7 +162,7 @@ state = {
                 >
                   <div
                     className="m-0 back-to-catalog"
-                    onClick={() => this.props.onClick('catalog', {}, false)}
+                    onClick={() => this.props.onSetView('catalog', {}, false)}
                     style={{ fontSize: '20px' }}
                   >&lt;Return to shopping</div>
                 </div>
@@ -190,4 +192,16 @@ function Invalid(props) {
   );
 }
 
-export default CheckoutForm;
+const mapStateToProps = state => {
+  return {
+    cart: state.cartReducer.cart
+  };
+};
+
+const mapDispatchtoProps = dispatch => {
+  return {
+    onSetView: (name, params, fromCart) => dispatch(viewActionCreator.setView(name, params, fromCart))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchtoProps)(CheckoutForm);
