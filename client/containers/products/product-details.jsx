@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AddedToCart from '../../components/cart/added-to-cart';
 import BackToCart from '../../components/navigation/back-to-cart';
 import BackToCatalog from '../../components/navigation/back-to-catalog';
+import ProductDetail from '../../components/products/product-detail';
 import * as productDetailActionCreator from '../../store/actions/productDetailActionCreator';
 
 class ProductDetails extends Component {
@@ -41,7 +42,7 @@ componentDidMount() {
           : <>
             <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
             {toCart}
-            <Details
+            <ProductDetail
               product={this.props.product}
               onClick={this.props.onClick}
               addToCart={this.props.addToCart}
@@ -64,54 +65,6 @@ function NoDetails() {
       <div className="no-details-message">The product you chose does not seem to exist in this place of existence. Please return to previous page and reassess the decisions you have made.</div>
     </div>
   );
-}
-
-class Details extends React.Component {
-  handleClick = () => {
-    this.props.addToCart(this.props.product);
-    this.props.handleAddedToCart();
-  }
-
-  render() {
-    const name = this.props.product.name;
-    const price = `$${(this.props.product.price * 0.01).toFixed(2)}`;
-    const image = this.props.product.image;
-    const shortDescription = this.props.product.shortDescription;
-    const longDescription = this.props.product.longDescription;
-    const detailOrCart = (
-      <div className="details-main">
-        <div className="d-flex detail-container">
-          <div className="d-flex detail-img">
-            <img src={image} alt="{name}" />
-          </div>
-          <div className="d-flex detail-name-price">
-            <div className="d-flex name-price">
-              <h4 className="name">{name}</h4>
-              <p className="price">{price}</p>
-            </div>
-            <div className="d-flex price-description">
-              <p className="short-description">{shortDescription}</p>
-              <div className="button">
-                <button
-                  className="btn btn-primary"
-                  type="button"
-                  onClick={this.handleClick}
-                >Add to Cart</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="">
-          <div className="long-description">{longDescription}</div>
-        </div>
-      </div>
-    );
-    return (
-      <div>
-        {detailOrCart}
-      </div>
-    );
-  }
 }
 
 const mapStateToProps = state => {

@@ -4,7 +4,8 @@ import CartSummary from '../components/cart/cart-summary';
 import Category from '../components/navigation/category';
 import Modal from '../components/navigation/disclaimer-modal';
 import Header from '../components/navigation/header';
-import * as actionCreators from '../store/actions/viewActionCreators';
+import * as productsActionCreators from '../store/actions/productsActionCreator';
+import * as viewActionCreators from '../store/actions/viewActionCreators';
 import CheckoutForm from './checkout/checkout-form';
 import ProductDetail from './products/product-details';
 import ProductList from './products/product-list';
@@ -17,6 +18,7 @@ state = {
 };
 
 componentDidMount() {
+  this.props.onProductFetch();
   this.getCartItems();
 }
 
@@ -159,8 +161,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onSetView: (name, params, fromCart) => dispatch(actionCreators.setView(name, params, fromCart)),
-    onChooseCategory: category => dispatch(actionCreators.chooseCategory(category))
+    onSetView: (name, params, fromCart) => dispatch(viewActionCreators.setView(name, params, fromCart)),
+    onChooseCategory: category => dispatch(viewActionCreators.chooseCategory(category)),
+    onProductFetch: () => dispatch(productsActionCreators.productFetch())
   };
 };
 
