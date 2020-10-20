@@ -2,13 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Spinner from '../../components/navigation/spinner';
 import ProductListItem from '../../components/products/product-list-item';
-import * as actionCreators from '../../store/actions/productsActionCreator';
 
 class ProductList extends Component {
-  componentDidMount() {
-    this.props.onProductFetch();
-  }
-
   render() {
     let productList = <Spinner />;
     let products = [];
@@ -50,10 +45,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    onProductFetch: () => dispatch(actionCreators.productFetch())
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProductList);
+export default connect(mapStateToProps)(ProductList);
