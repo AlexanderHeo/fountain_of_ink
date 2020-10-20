@@ -20,7 +20,7 @@ class ProductList extends Component {
           <ProductListItem
             product={x}
             key={x.productId}
-            view={this.props.onClick}
+            // view={this.props.onClick}
           />
         );
       });

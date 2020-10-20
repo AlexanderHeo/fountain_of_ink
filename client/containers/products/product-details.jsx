@@ -5,10 +5,11 @@ import BackToCart from '../../components/navigation/back-to-cart';
 import BackToCatalog from '../../components/navigation/back-to-catalog';
 import ProductDetail from '../../components/products/product-detail';
 import * as productDetailActionCreator from '../../store/actions/productDetailActionCreator';
+import * as viewActionCreator from '../../store/actions/viewActionCreators';
 
 class ProductDetails extends Component {
   componentDidMount() {
-    this.props.onProductDetailFetch(this.props.productId);
+    this.props.onProductDetailFetch(this.props.view.params.productId);
   }
 
   handleAddedToCart = () => {
@@ -18,23 +19,23 @@ class ProductDetails extends Component {
   render() {
     if (!this.props.addedToCart) {
       let toCart = '';
-      if (!this.props.fromCart) {
+      if (!this.props.view.fromCart) {
         toCart = null;
-      } else if (this.props.fromCart) {
-        toCart = <BackToCart onClick={() => this.props.onClick('cart', {}, false)} />;
+      } else if (this.props.view.fromCart) {
+        toCart = <BackToCart onClick={() => this.props.onSetView('cart', {}, false)} />;
       }
       return (
         !this.props.product
           ? <>
-            <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
+            <BackToCatalog onClick={() => this.props.onSetView('catalog', {}, false)} />
             <NoDetails />
           </>
           : <>
-            <BackToCatalog onClick={() => this.props.onClick('catalog', {}, false)} />
+            <BackToCatalog onClick={() => this.props.onSetView('catalog', {}, false)} />
             {toCart}
             <ProductDetail
               product={this.props.product}
-              onClick={this.props.onClick}
+              onClick={this.props.onSetView}
               addToCart={this.props.addToCart}
               handleAddedToCart={this.handleAddedToCart}
             />
@@ -43,7 +44,7 @@ class ProductDetails extends Component {
     } else {
       return <AddedToCart
         product={this.props.product}
-        onClick={this.props.onClick}
+        onClick={this.props.onSetView}
       />;
     }
   }
@@ -61,14 +62,16 @@ const mapStateToProps = state => {
   return {
     product: state.productDetailReducer.product,
     addedToCart: state.productDetailReducer.addedToCart,
-    loading: state.productDetailReducer.loading
+    loading: state.productDetailReducer.loading,
+    view: state.viewReducer.view
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     onProductDetailFetch: productId => dispatch(productDetailActionCreator.productDetailFetch(productId)),
-    onHandleAddedToCart: () => dispatch(productDetailActionCreator.handleAddedToCart())
+    onHandleAddedToCart: () => dispatch(productDetailActionCreator.handleAddedToCart()),
+    onSetView: (name, params, fromCart) => dispatch(viewActionCreator.setView(name, params, fromCart))
   };
 };
 
