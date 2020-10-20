@@ -7,7 +7,7 @@ import Header from '../components/navigation/header';
 import * as productsActionCreators from '../store/actions/productsActionCreator';
 import * as viewActionCreators from '../store/actions/viewActionCreators';
 import CheckoutForm from './checkout/checkout-form';
-import ProductDetail from './products/product-details';
+import ProductDetails from './products/product-details';
 import ProductList from './products/product-list';
 
 class App extends Component {
@@ -118,7 +118,7 @@ render() {
       loading={this.props.loading}
     />;
   } else if (viewPageState === 'details') {
-    viewPageComponent = <ProductDetail
+    viewPageComponent = <ProductDetails
       onClick={this.props.onSetView}
       addToCart={this.addToCart}
       productId={this.props.view.params.productId}

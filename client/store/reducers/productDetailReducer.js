@@ -27,6 +27,9 @@ const reducer = (state = initialState, action) => {
     case actionTypes.HANDLE_ADDED_TO_CART:
       return {
         ...state,
+        product: {
+          ...state.product
+        },
         addedToCart: true
       };
     default:
