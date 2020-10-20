@@ -4,6 +4,7 @@ import AddedToCart from '../../components/cart/added-to-cart';
 import BackToCart from '../../components/navigation/back-to-cart';
 import BackToCatalog from '../../components/navigation/back-to-catalog';
 import ProductDetail from '../../components/products/product-detail';
+import * as cartActionCreator from '../../store/actions/cartActionCreator';
 import * as productDetailActionCreator from '../../store/actions/productDetailActionCreator';
 import * as viewActionCreator from '../../store/actions/viewActionCreators';
 
@@ -34,7 +35,7 @@ class ProductDetails extends Component {
             <BackToCatalog onClick={() => this.props.onSetView('catalog', {}, false)} />
             {toCart}
             <ProductDetail
-              addToCart={this.props.addToCart}
+              addToCart={this.props.onAddToCart}
               handleAddedToCart={this.handleAddedToCart}
             />
           </>
@@ -69,6 +70,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onProductDetailFetch: productId => dispatch(productDetailActionCreator.productDetailFetch(productId)),
     onHandleAddedToCart: () => dispatch(productDetailActionCreator.handleAddedToCart()),
+    onAddToCart: product => dispatch(cartActionCreator.addToCart(product)),
     onSetView: (name, params, fromCart) => dispatch(viewActionCreator.setView(name, params, fromCart))
   };
 };
