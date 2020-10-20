@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import BackToCatalog from '../../components/navigation/back-to-catalog';
+import * as cartActionCreator from '../../store/actions/cartActionCreator';
+import * as viewActionCreator from '../../store/actions/viewActionCreators';
 
 class CheckoutForm extends Component {
 state = {
@@ -44,7 +47,8 @@ state = {
           creditCard: this.state.creditCard,
           shippingAddress: this.state.address
         };
-        this.props.placeOrder(customerInfo);
+        this.props.onPlaceOrder(customerInfo);
+        this.props.onSetView('catalog', {}, false);
         this.setState({
           name: '',
           creditCard: '',
@@ -68,18 +72,12 @@ state = {
     const validInput = this.state.validInput;
     const cart = this.props.cart;
     const allPrice = [];
-    cart.map(x => { allPrice.push(x.price); });
-    let checkoutPrice = 0;
-    if (allPrice.length > 1) {
-      checkoutPrice = ((allPrice.reduce((acc, cur) => acc + cur), 0) * 0.01).toFixed(2);
-    } else if (allPrice.length === 0) {
-      checkoutPrice = 0;
-    } else {
-      checkoutPrice = (allPrice[0] * 0.01).toFixed(2);
-    }
+    cart.forEach(x => { allPrice.push(x.price); });
+    const totalPrice = allPrice.reduce((a, b) => a + b, 0);
+    const checkoutPrice = (totalPrice * 0.01).toFixed(2);
     return (
       <>
-        <BackToCatalog onClick={this.props.onClick}/>
+        <BackToCatalog onClick={this.props.onSetView}/>
         <div className="row">
           <div className="col-12 d-flex place-order">
             <form onSubmit={this.handleSubmit}>
@@ -160,7 +158,7 @@ state = {
                 >
                   <div
                     className="m-0 back-to-catalog"
-                    onClick={() => this.props.onClick('catalog', {}, false)}
+                    onClick={() => this.props.onSetView('catalog', {}, false)}
                     style={{ fontSize: '20px' }}
                   >&lt;Return to shopping</div>
                 </div>
@@ -190,4 +188,17 @@ function Invalid(props) {
   );
 }
 
-export default CheckoutForm;
+const mapStateToProps = state => {
+  return {
+    cart: state.cartReducer.cart
+  };
+};
+
+const mapDispatchtoProps = dispatch => {
+  return {
+    onSetView: (name, params, fromCart) => dispatch(viewActionCreator.setView(name, params, fromCart)),
+    onPlaceOrder: customer => dispatch(cartActionCreator.placeOrder(customer))
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchtoProps)(CheckoutForm);

@@ -1,9 +1,12 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as cartActionCreator from '../../store/actions/cartActionCreator';
+import * as productDetailActionCreator from '../../store/actions/productDetailActionCreator';
 
 class ProductDetail extends React.Component {
   handleClick = () => {
-    this.props.addToCart(this.props.product);
-    this.props.handleAddedToCart();
+    this.props.onAddToCart(this.props.product);
+    this.props.onHandleAddedToCart();
   }
 
   render() {
@@ -48,4 +51,17 @@ class ProductDetail extends React.Component {
   }
 }
 
-export default ProductDetail;
+const mapStateToProps = state => {
+  return {
+    product: state.productDetailReducer.product
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onAddToCart: product => dispatch(cartActionCreator.addToCart(product)),
+    onHandleAddedToCart: () => dispatch(productDetailActionCreator.handleAddedToCart())
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductDetail);
