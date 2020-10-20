@@ -21,21 +21,6 @@ componentDidMount() {
   this.props.onGetCartItems();
 }
 
-placeOrder = customer => {
-  fetch('/api/orders', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(customer)
-  })
-    .then(res => res.json())
-    .then(data => this.setState({
-      view: { name: 'catalog', params: {}, fromCart: false },
-      cart: []
-    }));
-}
-
 handleCloseModal = () => {
   this.setState({ modalOpen: false });
 }
@@ -55,7 +40,6 @@ render() {
     viewPageComponent = <CartSummary/>;
   } else if (viewPageState === 'checkout') {
     viewPageComponent = <CheckoutForm
-      placeOrder={this.placeOrder}
     />;
   }
   return (
@@ -85,7 +69,8 @@ const mapDispatchToProps = dispatch => {
     onChooseCategory: category => dispatch(viewActionCreators.chooseCategory(category)),
     onProductFetch: () => dispatch(productsActionCreators.productFetch()),
     onGetCartItems: () => dispatch(cartActionCreators.getCartItems()),
-    onAddToCart: product => dispatch(cartActionCreators.addToCart(product))
+    onAddToCart: product => dispatch(cartActionCreators.addToCart(product)),
+    onPlaceOrder: customer => dispatch(cartActionCreators.placeOrder(customer))
   };
 };
 

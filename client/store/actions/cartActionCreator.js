@@ -71,8 +71,38 @@ export const addToCart = product => {
   };
 };
 
-export const placeOrder = () => {
+export const placeOrderStart = () => {
   return {
-    type: actionTypes.PLACE_ORDER
+    type: actionTypes.PLACE_ORDER_START
+  };
+};
+
+export const placeOrderFail = () => {
+  return {
+    type: actionTypes.PLACE_ORDER_FAIL
+  };
+};
+
+export const placeOrderSuccess = () => {
+  return {
+    type: actionTypes.PLACE_ORDER_SUCCESS
+  };
+};
+
+export const placeOrder = customer => {
+  return (dispatch, getState) => {
+    dispatch(placeOrderStart());
+    fetch('api/orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(customer)
+    })
+      .then(res => res.json())
+      .then(data => {
+        dispatch(placeOrderSuccess());
+      })
+      .catch(err => dispatch(placeOrderFail(err)));
   };
 };
