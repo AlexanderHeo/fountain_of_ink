@@ -48,7 +48,7 @@ state = {
           shippingAddress: this.state.address
         };
         this.props.onPlaceOrder(customerInfo);
-        this.props.onSetView('catalog', {}, false);
+        this.props.onSetView('thankyou', {}, false);
         this.setState({
           name: '',
           creditCard: '',
