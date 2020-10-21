@@ -4,6 +4,7 @@ import CartSummary from '../components/cart/cart-summary';
 import Category from '../components/navigation/category';
 import Modal from '../components/navigation/disclaimer-modal';
 import Header from '../components/navigation/header';
+import ThankYou from '../components/navigation/thankyou';
 import * as cartActionCreators from '../store/actions/cartActionCreator';
 import * as productsActionCreators from '../store/actions/productsActionCreator';
 import * as viewActionCreators from '../store/actions/viewActionCreators';
@@ -13,7 +14,7 @@ import ProductList from './products/product-list';
 
 class App extends Component {
 state = {
-  modalOpen: false
+  modalOpen: true
 };
 
 componentDidMount() {
@@ -41,6 +42,8 @@ render() {
   } else if (viewPageState === 'checkout') {
     viewPageComponent = <CheckoutForm
     />;
+  } else if (viewPageState === 'thankyou') {
+    viewPageComponent = <ThankYou click={this.props.onSetView}/>;
   }
   return (
     <div className="container">
