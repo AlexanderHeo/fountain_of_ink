@@ -40,10 +40,9 @@ render() {
   } else if (viewPageState === 'cart') {
     viewPageComponent = <CartSummary/>;
   } else if (viewPageState === 'checkout') {
-    viewPageComponent = <CheckoutForm
-    />;
+    viewPageComponent = <CheckoutForm/>;
   } else if (viewPageState === 'thankyou') {
-    viewPageComponent = <ThankYou click={this.props.onSetView}/>;
+    viewPageComponent = <ThankYou/>;
   }
   return (
     <div className="container">
