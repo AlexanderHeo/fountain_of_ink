@@ -1,11 +1,18 @@
 #header {
+  flex-direction: column;
   position: sticky;
   top: 0;
   left: 0;
+  /* height: 100px;
   justify-content: space-between;
-  padding: 1em;
+  margin-bottom: 1rem; */
+  padding: 1rem;
   background: #fff;
   z-index: 10;
+}
+.header,
+.category-bar {
+  width: 100%;
 }
 .logo-container {
   align-items: center;
@@ -24,6 +31,9 @@
 .logo-title {
   margin: 0 0.5em;
   font-size: 2rem;
+}
+.header {
+  justify-content: space-between;
 }
 .header-links-container {
   align-items: center;
@@ -55,4 +65,31 @@
 }
 a:hover .cart-number {
   border-color: dodgerblue;
+}
+
+.category-bar {
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  margin-top: 1rem;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+}
+.category-bar-item {
+  width: 100%;
+  text-align: center;
+}
+.category-bar.hide {
+  display: none;
+  transform: translateY(40px);
+}
+.category-bar.show {
+  display: inherit;
+  animation: show 0.2s ease-in forwards;
+  opacity: 0;
+}
+@keyframes show {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
