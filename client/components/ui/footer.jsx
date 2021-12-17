@@ -7,7 +7,7 @@ import {
   FaPinterest,
   FaTwitter,
 } from 'react-icons/fa';
-import { MdOutlineLocalShipping } from 'react-icons/md';
+import { MdLocalShipping } from 'react-icons/md';
 
 const Footer = () => {
   return (
@@ -16,7 +16,7 @@ const Footer = () => {
         <div className='footer-column'>
           <h4 className='footer-title'>Guarantees</h4>
           <div className='footer-item flex'>
-            <MdOutlineLocalShipping className='footer-icon' size='1.5rem' />
+            <MdLocalShipping className='footer-icon' size='1.5rem' />
             <span className='guarantee-tag flex'>Safe Shipping</span>
           </div>
           <div className='footer-item flex'>
