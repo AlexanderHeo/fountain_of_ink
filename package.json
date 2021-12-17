@@ -53,6 +53,7 @@
       }
     },
     "rules": {
+      "comma-dangle": 0,
       "semi": [
         "error",
         "always"
@@ -98,6 +99,7 @@
     "pg": "7.17.1",
     "react": "16.12.0",
     "react-dom": "16.12.0",
+    "react-icons": "4.3.1",
     "react-redux": "7.2.1",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
