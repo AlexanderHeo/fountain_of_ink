@@ -1,0 +1,63 @@
+#footer {
+  padding: 6rem 1rem;
+  position: relative;
+}
+.footer-title {
+  margin-bottom: 2rem;
+}
+.footer-container {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.footer-column {
+  padding: 0 3rem;
+}
+.footer-item {
+  margin-bottom: 1.5rem;
+}
+.footer-item,
+.guarantee-tag {
+  align-items: center;
+}
+.guarantee-tag {
+  margin-left: 0.5rem;
+}
+.sm-icon:not(:first-of-type) {
+  margin: 0 1rem;
+}
+.sm-icon:first-of-type {
+  margin-right: 1rem;
+}
+.link:hover .icon {
+  transform: scale(1.2);
+}
+.link:hover .faicon {
+  color: #4267b2;
+}
+.link:hover .twicon {
+  color: #1da1f2;
+}
+.link:hover .igicon {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285aeb 90%
+  );
+  color: white;
+}
+.link:hover .pticon {
+  color: #e60023;
+}
+
+.copyright {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0.5rem 0;
+  font-size: 0.75rem;
+  width: 100%;
+}

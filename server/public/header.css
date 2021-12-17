@@ -1,0 +1,58 @@
+#header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  justify-content: space-between;
+  padding: 1em;
+  background: #fff;
+  z-index: 10;
+}
+.logo-container {
+  align-items: center;
+}
+.logo-image {
+  width: max-content;
+  height: 60px;
+}
+.logo-image a img {
+  height: 100%;
+}
+.logo-link:hover img {
+  background: rgba(30, 144, 255, 0.5);
+  border-radius: 0.2rem;
+}
+.logo-title {
+  margin: 0 0.5em;
+  font-size: 2rem;
+}
+.header-links-container {
+  align-items: center;
+  font-size: 1.2rem;
+}
+.header-link {
+  padding: 0 0.5em;
+}
+.header-link.search {
+  position: relative;
+}
+.search-input {
+  border-radius: 5rem;
+  padding: 0.5rem 1rem;
+}
+.search-icon {
+  position: absolute;
+  right: 25px;
+  top: 10px;
+}
+.cart-number {
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 50%;
+  padding: 0.3rem;
+}
+a:hover .cart-number {
+  border-color: dodgerblue;
+}
