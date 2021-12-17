@@ -6,16 +6,16 @@ const publicPath = path.join(__dirname, 'server/public/');
 
 module.exports = {
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.js', '.jsx'],
   },
   entry: clientPath,
   output: {
-    path: publicPath
+    path: publicPath,
   },
   module: {
     rules: [
       {
-        test: /\.jsx/,
+        test: /\.jsx?$/,
         use: {
           loader: 'babel-loader',
           options: {
@@ -23,12 +23,12 @@ module.exports = {
             plugins: [
               '@babel/plugin-transform-react-jsx',
               '@babel/plugin-proposal-class-properties',
-              '@babel/plugin-proposal-object-rest-spread'
-            ]
-          }
-        }
-      }
-    ]
+              '@babel/plugin-proposal-object-rest-spread',
+            ],
+          },
+        },
+      },
+    ],
   },
   devtool: 'source-map',
   devServer: {
@@ -37,9 +37,9 @@ module.exports = {
     host: '0.0.0.0',
     port: process.env.DEV_SERVER_PORT,
     proxy: {
-      '/api': `http://localhost:${process.env.PORT}`
+      '/api': `http://localhost:${process.env.PORT}`,
     },
     stats: 'minimal',
-    watchContentBase: true
-  }
+    watchContentBase: true,
+  },
 };
