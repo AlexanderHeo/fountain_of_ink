@@ -1,0 +1,16 @@
+.brands-container {
+  padding: 10rem 3rem;
+}
+.brands-list-container {
+  grid-template-columns: repeat(7, 1fr);
+}
+.brands-list {
+  width: 70%;
+}
+.brand-title {
+  border-bottom: 1px solid black;
+  margin-bottom: 1rem;
+}
+.brand-item {
+  margin: 0.5rem 0;
+}

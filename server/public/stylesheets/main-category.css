@@ -1,0 +1,57 @@
+.main-category {
+  flex-direction: column;
+  align-items: center;
+  padding: 5rem 0 10rem 0;
+}
+.main-category.pens {
+  background: lightblue;
+}
+.main-category.inks {
+  background: lightyellow;
+}
+.main-category.papers {
+  background: lightpink;
+}
+.main-category.accessories {
+  background: lightgray;
+}
+.main-category-title {
+  width: 100%;
+  align-self: stretch;
+  margin: 5rem 0;
+  border-radius: 1rem;
+}
+.main-category-title h3 {
+  width: 100%;
+  align-self: center;
+  text-align: center;
+}
+.main-category-list {
+  width: 100%;
+  margin: 1rem;
+}
+.main-category.pens .main-category-list {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+.main-category.inks .main-category-list,
+.main-category.papers .main-category-list {
+  grid-template-columns: 1fr 1fr;
+}
+.main-category.accessories .main-category-list {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.main-category-item-container {
+  text-align: center;
+  align-items: center;
+  align-self: stretch;
+}
+.main-category-item {
+  width: 100%;
+  height: 90px;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid dodgerblue;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 0.5rem;
+}
