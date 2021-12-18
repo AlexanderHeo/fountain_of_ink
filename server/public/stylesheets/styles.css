@@ -73,3 +73,10 @@ a:hover {
   height: 1000px;
   background: dodgerblue;
 }
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 20;
+}
