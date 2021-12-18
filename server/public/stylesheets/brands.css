@@ -1,5 +1,22 @@
 .brands-container {
-  padding: 10rem 3rem;
+  padding: 5rem 3rem 10rem;
+}
+.brands-title {
+  text-align: center;
+  margin: 2rem 0 5rem;
+}
+.brands-title h3 {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brands-title h3::before,
+.brands-title h3::after {
+  content: '';
+  width: 25%;
+  margin: 0 3rem;
+  border-bottom: 1px solid black;
 }
 .brands-list-container {
   grid-template-columns: repeat(7, 1fr);
