@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../components/ui/layout';
 import Main from '../components/ui/main';
+import Scroll from './scroll-to-top';
 
 class App extends Component {
   state = {
@@ -40,6 +41,7 @@ class App extends Component {
           handleCategory={this.handleCategory}
           menudown={this.state.menudown}
         />
+        <Scroll />
       </Layout>
     );
   }
