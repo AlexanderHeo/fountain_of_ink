@@ -1,57 +1,98 @@
+.main-category-container {
+  margin-top: 5rem;
+}
 .main-category {
   flex-direction: column;
   align-items: center;
-  padding: 5rem 0 10rem 0;
-}
-.main-category.pens {
-  background: lightblue;
-}
-.main-category.inks {
-  background: lightyellow;
-}
-.main-category.papers {
-  background: lightpink;
-}
-.main-category.accessories {
-  background: lightgray;
+  padding: 0 0 5rem 0;
 }
 .main-category-title {
   width: 100%;
-  align-self: stretch;
+  align-items: center;
+  justify-content: center;
   margin: 5rem 0;
   border-radius: 1rem;
 }
 .main-category-title h3 {
   width: 100%;
-  align-self: center;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.main-category-title h3::before,
+.main-category-title h3::after {
+  content: '';
+  width: 25%;
+  margin: 0 3rem;
+  border-bottom: 1px solid black;
 }
 .main-category-list {
   width: 100%;
   margin: 1rem;
 }
-.main-category.pens .main-category-list {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+.main-category.pens .main-category-list,
+.main-category.inks .main-category-list {
+  grid-template-columns: repeat(4, 1fr);
 }
-.main-category.inks .main-category-list,
-.main-category.papers .main-category-list {
-  grid-template-columns: 1fr 1fr;
-}
+.main-category.papers .main-category-list,
 .main-category.accessories .main-category-list {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(5, 1fr);
 }
-.main-category-item-container {
+.main-category-item-container img:hover {
+  cursor: pointer;
+  transform: translateY(10px);
+}
+.main-category-type {
   text-align: center;
+  text-transform: capitalize;
+  font-size: 1.2rem;
+}
+.main-category-img-container {
+  justify-content: center;
   align-items: center;
-  align-self: stretch;
+  padding-bottom: 2rem;
+}
+.main-category-img {
+  width: 50%;
 }
 .main-category-item {
   width: 100%;
   height: 90px;
   align-items: center;
   justify-content: center;
-  border: 3px solid dodgerblue;
   border-radius: 0.5rem;
   padding: 1rem;
   margin: 0.5rem;
+  font-size: 1.5rem;
+}
+.main-category-item:hover {
+  cursor: pointer;
+}
+.main-category.pens .main-category-item {
+  border: 3px solid dodgerblue;
+}
+.main-category.pens .main-category-item:hover {
+  background: dodgerblue;
+  color: lightblue;
+}
+.main-category.inks .main-category-item {
+  border: 3px solid brown;
+}
+.main-category.inks .main-category-item:hover {
+  background: brown;
+  color: lightyellow;
+}
+.main-category.papers .main-category-item {
+  border: 3px solid red;
+}
+.main-category.papers .main-category-item:hover {
+  background: red;
+  color: lightpink;
+}
+.main-category.accessories .main-category-item {
+  border: 3px solid green;
+}
+.main-category.accessories .main-category-item:hover {
+  background: green;
+  color: lightgreen;
 }

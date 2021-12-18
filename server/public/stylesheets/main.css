@@ -1,6 +1,10 @@
 .main {
   top: 100px;
 }
+.main-container {
+  width: 100%;
+  max-width: 100%;
+}
 .category-container {
   position: relative;
   width: 70%;
