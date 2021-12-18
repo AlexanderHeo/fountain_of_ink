@@ -2,7 +2,7 @@ export const ac = [
   'apica',
   'aston leather',
   'aurora',
-  'benu',
+  'BENU',
   'clairefontaine',
   'colorverse',
   'conklin',
@@ -32,7 +32,7 @@ export const gk = [
   'kaweco',
 ];
 export const ln = [
-  'lamy',
+  'LAMY',
   'leuchtturm 1979',
   'maiora',
   'maruman mnemosyne',
@@ -70,8 +70,8 @@ export const tz = [
   'tibaldi',
   'tomoe river',
   "traveler's company",
-  'twsbi',
+  'TWSBI',
   'visconti',
   'yonkers',
-  'ystudio',
+  'YSTUDIO',
 ];

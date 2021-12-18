@@ -80,3 +80,9 @@ a:hover {
   right: 25px;
   z-index: 20;
 }
+
+.main-category-title h3,
+.main-category-item div,
+.brand-item {
+  text-transform: capitalize;
+}

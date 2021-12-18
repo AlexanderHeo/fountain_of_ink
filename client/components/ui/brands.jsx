@@ -4,6 +4,9 @@ import BrandsList from './brands-list';
 const Brands = () => {
   return (
     <div className='brands-container' id='brands'>
+      <div className='brands-title'>
+        <h3>Shop by Brands</h3>
+      </div>
       <div className='brands-list-container grid'>
         <div className='brands-list'>
           <BrandsList title='A - C' list={ac} />
