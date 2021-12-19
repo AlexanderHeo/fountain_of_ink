@@ -177,9 +177,9 @@ export const accessories = {
     },
     {
       id: 10,
-      type: 'miscellaneous',
+      type: 'misc',
       img: 'images/accessories/misc.jpg',
-      alt: 'miscellaneous',
+      alt: 'misc',
     },
   ],
 };
