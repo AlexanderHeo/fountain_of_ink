@@ -4,13 +4,12 @@
 .main-category {
   flex-direction: column;
   align-items: center;
-  padding: 0 0 5rem 0;
 }
 .main-category-title {
   width: 100%;
   align-items: center;
   justify-content: center;
-  margin: 5rem 0;
+  margin: 5rem 0 0;
   border-radius: 1rem;
 }
 .main-category-title h3 {
@@ -28,7 +27,8 @@
 }
 .main-category-list {
   width: 100%;
-  margin: 1rem;
+  margin: 2rem 1rem;
+  align-items: center;
 }
 .main-category.pens .main-category-list,
 .main-category.inks .main-category-list {
@@ -38,61 +38,66 @@
 .main-category.accessories .main-category-list {
   grid-template-columns: repeat(5, 1fr);
 }
-.main-category-item-container img:hover {
-  cursor: pointer;
-  transform: translateY(10px);
+.main-category-item-container {
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem 0;
 }
-.main-category-type {
-  text-align: center;
-  text-transform: capitalize;
-  font-size: 1.2rem;
+.main-category.accessories .main-category-item-container {
+  margin: 3rem 0;
 }
 .main-category-img-container {
-  justify-content: center;
+  position: relative;
   align-items: center;
-  padding-bottom: 2rem;
+  width: 60%;
+  border-radius: 2rem;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
 }
-.main-category-img {
-  width: 50%;
-}
-.main-category-item {
+.main-category-img-overlay {
+  position: absolute;
   width: 100%;
-  height: 90px;
-  align-items: center;
-  justify-content: center;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin: 0.5rem;
-  font-size: 1.5rem;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 2;
+  transition: background 0.3s ease-in-out;
 }
-.main-category-item:hover {
+.main-category-type {
+  position: absolute;
+  width: 60%;
+  text-align: center;
+  text-transform: capitalize;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  padding: 0 0.5rem;
+  pointer-events: none;
+  transition: font-size 0.2s ease-in, transform 0.2s ease-in, color 0.2s ease-in;
+  z-index: 3;
+}
+
+.main-category-img-container:hover {
   cursor: pointer;
+  transition: 0.3s ease-in-out;
+  transform: scale(1.2);
 }
-.main-category.pens .main-category-item {
-  border: 3px solid dodgerblue;
+.main-category-img-container:hover + .main-category-type {
+  width: 80%;
+  margin-top: 0.3rem;
+  color: black;
+  font-size: 1.4rem;
+  transition: font-size 0.2s ease-in, transform 0.2s ease-in, color 0.2s ease-in;
+  transform: translateY(160px);
 }
-.main-category.pens .main-category-item:hover {
-  background: dodgerblue;
-  color: lightblue;
+.main-category-img-container:hover .main-category-img-overlay {
+  background: rgba(0, 0, 0, 0);
+  transition: 0.3s ease-in-out;
 }
-.main-category.inks .main-category-item {
-  border: 3px solid brown;
-}
-.main-category.inks .main-category-item:hover {
-  background: brown;
-  color: lightyellow;
-}
-.main-category.papers .main-category-item {
-  border: 3px solid red;
-}
-.main-category.papers .main-category-item:hover {
-  background: red;
-  color: lightpink;
-}
-.main-category.accessories .main-category-item {
-  border: 3px solid green;
-}
-.main-category.accessories .main-category-item:hover {
-  background: green;
-  color: lightgreen;
+.main-category.papers .main-category-img-container:hover + .main-category-type,
+.main-category.accessories
+  .main-category-img-container:hover
+  + .main-category-type {
+  transform: translateY(135px);
+  width: 70%;
 }
