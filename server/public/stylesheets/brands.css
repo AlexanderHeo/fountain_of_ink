@@ -31,3 +31,6 @@
 .brand-item {
   margin: 0.5rem 0;
 }
+.brand-item:hover {
+  cursor: pointer;
+}
