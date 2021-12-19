@@ -10,15 +10,19 @@ const MainCategory = ({ categories }) => {
       <div className='main-category-list grid'>
         {categories.categories.map((category) => {
           return (
-            <div className='main-category-item-container' key={category.id}>
-              <div className='main-category-type'>{category.type}</div>
+            <div
+              className='main-category-item-container flex'
+              key={category.id}
+            >
               <div className='main-category-img-container flex'>
+                <div className='main-category-img-overlay' />
                 <img
                   src={category.img}
                   alt={category.alt}
                   className='main-category-img'
                 />
               </div>
+              <div className='main-category-type'>{category.type}</div>
             </div>
           );
         })}
