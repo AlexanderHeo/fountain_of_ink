@@ -1,6 +1,6 @@
 import React from 'react';
-import { ac, df, gk, ln, op, qs, tz } from '../lib/brandsList';
-import BrandsList from './brands-list';
+import { ac, df, gk, ln, op, qs, tz } from '../lib/brands-list';
+import BrandsList from './BrandsList';
 const Brands = () => {
   return (
     <div className='brands-container' id='brands'>

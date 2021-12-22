@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Layout from '../components/ui/layout';
-import Main from '../components/ui/main';
-import Scroll from './scroll-to-top';
+import Layout from '../components/ui/Layout';
+import Main from '../components/ui/Main';
+import Scroll from './ScrollToTop';
 
 class App extends Component {
   state = {
