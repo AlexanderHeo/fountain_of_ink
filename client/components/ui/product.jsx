@@ -1,60 +1,39 @@
 import React from 'react';
-import { inkColors, penColors } from '../lib/colors';
-import { accessories, inks, papers, pens } from '../lib/mainCategory';
-import Brands from './brands';
-import Colors from './colors';
-import Category from './main-category';
+import { inkColors, penColors } from '../lib/colors-list';
+import Brands from './Brands';
+import Category from './Category';
+import Colors from './Colors';
 
-const Product = () => {
-  const cn2 = `product-hero-subcategory-section ${accessories.title}`;
+const Product = ({ categories }) => {
+  let colorElement;
+  if (categories.title === 'pens') {
+    colorElement = (
+      <div className='product-hero-color-section'>
+        <Colors colors={penColors} categorys='pens' />
+      </div>
+    );
+  } else if (categories.title === 'inks') {
+    colorElement = (
+      <div className='product-hero-color-section'>
+        <Colors colors={inkColors} categorys='pens' />
+      </div>
+    );
+  } else {
+    colorElement = null;
+  }
   return (
     <div className='product-container'>
       <div className='product-hero-section flex'>
         <div className='product-hero-image-section flex'>
           <div className='product-hero-image-container flex'>
-            <img src={pens.img} alt={pens.alt} />
+            <img src={categories.img} alt={categories.alt} />
           </div>
         </div>
         <div className='product-hero-subcategory-section'>
-          <Category categories={pens} />
+          <Category categories={categories} />
         </div>
       </div>
-      <div className='product-hero-color-section'>
-        <Colors colors={penColors} category='inks' />
-      </div>
-      <div className='product-hero-section flex'>
-        <div className='product-hero-image-section flex'>
-          <div className='product-hero-image-container flex'>
-            <img src={inks.img} alt={inks.alt} />
-          </div>
-        </div>
-        <div className='product-hero-subcategory-section'>
-          <Category categories={inks} />
-        </div>
-      </div>
-      <div className='product-hero-color-section'>
-        <Colors colors={inkColors} category='inks' />
-      </div>
-      <div className='product-hero-section flex'>
-        <div className='product-hero-image-section flex'>
-          <div className='product-hero-image-container flex'>
-            <img src={papers.img} alt={papers.alt} />
-          </div>
-        </div>
-        <div className='product-hero-subcategory-section'>
-          <Category categories={papers} />
-        </div>
-      </div>
-      <div className='product-hero-section flex'>
-        <div className='product-hero-image-section flex'>
-          <div className='product-hero-image-container flex'>
-            <img src={accessories.img} alt={accessories.alt} />
-          </div>
-        </div>
-        <div className={cn2}>
-          <Category categories={accessories} />
-        </div>
-      </div>
+      {colorElement}
       <Brands />
     </div>
   );

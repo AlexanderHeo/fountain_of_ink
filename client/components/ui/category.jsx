@@ -1,43 +1,34 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Category extends Component {
-  state = {
-    categoryBar: 'category-bar flex hide',
-  };
-
-  componentDidUpdate = (prevProps) => {
-    const isVisible = this.props.isVisible;
-    if (isVisible !== prevProps.isVisible) {
-      this.props.isVisible
-        ? this.setState({ categoryBar: 'category-bar flex show' })
-        : this.setState({ categoryBar: 'category-bar flex hide' });
-    }
-  };
-
-  render() {
-    return (
-      <div className={this.state.categoryBar}>
-        <div className='category-bar-item'>
-          <div className='category-bar-title'>Shop by Brand</div>
-        </div>
-        <div className='category-bar-item'>
-          <div className='category-bar-title'>Fountain Pens</div>
-        </div>
-        <div className='category-bar-item'>
-          <div className='category-bar-title'>Inks</div>
-        </div>
-        <div className='category-bar-item'>
-          <div className='category-bar-title'>Papers</div>
-        </div>
-        <div className='category-bar-item'>
-          <div className='category-bar-title'>Accessories</div>
-        </div>
-        <div className='category-bar-item'>
-          <div className='category-bar-title'>Specials</div>
-        </div>
+const MainCategory = ({ categories }) => {
+  const classname = `main-category ${categories.title} flex`;
+  return (
+    <div className={classname}>
+      <div className='main-category-title flex'>
+        <h3>{categories.title}</h3>
       </div>
-    );
-  }
-}
+      <div className='main-category-list grid'>
+        {categories.categories.map((category) => {
+          return (
+            <div
+              className='main-category-item-container flex'
+              key={category.id}
+            >
+              <div className='main-category-img-container flex'>
+                <div className='main-category-img-overlay' />
+                <img
+                  src={category.img}
+                  alt={category.alt}
+                  className='main-category-img'
+                />
+              </div>
+              <div className='main-category-type'>{category.type}</div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
 
-export default Category;
+export default MainCategory;

@@ -5,9 +5,10 @@ import {
   BsChevronRight,
   BsChevronUp,
 } from 'react-icons/bs';
-import { accessories, inks, papers, pens } from '../lib/mainCategory';
-import Brands from './brands';
-import MainCategory from './main-category';
+import { accessories, inks, papers, pens } from '../lib/category-list';
+import Brands from './Brands';
+import Category from './Category';
+import Product from './Product';
 
 const Main = ({ handleCategory, menudown }) => {
   return (
@@ -71,11 +72,15 @@ const Main = ({ handleCategory, menudown }) => {
         </div>
       </div>
       <div className='main-category-container'>
-        <MainCategory categories={pens} />
-        <MainCategory categories={inks} />
-        <MainCategory categories={papers} />
-        <MainCategory categories={accessories} />
+        <Category categories={pens} />
+        <Category categories={inks} />
+        <Category categories={papers} />
+        <Category categories={accessories} />
         <Brands />
+        <Product categories={pens} />
+        <Product categories={inks} />
+        <Product categories={papers} />
+        <Product categories={accessories} />
       </div>
     </div>
   );

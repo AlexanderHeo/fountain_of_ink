@@ -1,7 +1,7 @@
 import React from 'react';
 import { BsCart3 } from 'react-icons/bs';
 import { FiHeart, FiSearch } from 'react-icons/fi';
-import Category from './category';
+import CategoryBar from './CategoryBar';
 
 const Header = ({ cartNumber, home, isVisible }) => {
   return (
@@ -44,7 +44,7 @@ const Header = ({ cartNumber, home, isVisible }) => {
           </div>
         </div>
       </div>
-      <Category className='category-bar' isVisible={isVisible} />
+      <CategoryBar className='category-bar' isVisible={isVisible} />
     </div>
   );
 };
