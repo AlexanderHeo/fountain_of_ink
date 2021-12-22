@@ -1,5 +1,7 @@
 export const pens = {
   title: 'pens',
+  img: 'images/pens/best-sellers.jpg',
+  alt: 'collection of fountain pens',
   categories: [
     {
       id: 1,
@@ -9,27 +11,27 @@ export const pens = {
     },
     {
       id: 2,
-      type: 'best sellers',
-      img: 'images/pens/best-sellers.jpg',
-      alt: 'best selling pens',
+      type: 'demonstrators',
+      img: 'images/pens/demonstrators.jpg',
+      alt: 'demonstrator pens',
     },
     {
       id: 3,
+      type: 'pocket pens',
+      img: 'images/pens/pocket-pens.jpg',
+      alt: 'small pens',
+    },
+    {
+      id: 4,
       type: 'unique & limited editions',
       img: 'images/pens/unique.jpg',
       alt: 'unique & limited editions pens',
     },
     {
-      id: 4,
+      id: 5,
       type: 'gold nibs',
       img: 'images/pens/gold-nib.jpg',
       alt: 'gold nib pens',
-    },
-    {
-      id: 5,
-      type: 'demonstrators',
-      img: 'images/pens/demonstrators.jpg',
-      alt: 'demonstrator pens',
     },
     {
       id: 6,
@@ -45,25 +47,27 @@ export const pens = {
     },
     {
       id: 8,
-      type: 'pocket pens',
-      img: 'images/pens/pocket-pens.jpg',
-      alt: 'small pens',
+      type: 'best sellers',
+      img: 'images/pens/best-sellers.jpg',
+      alt: 'best selling pens',
     },
   ],
 };
 
 export const inks = {
   title: 'inks',
+  img: '/images/inks/category-inks.jpg',
+  alt: 'collection of bottled inks',
   categories: [
     {
       id: 1,
-      type: 'bottled',
+      type: 'bottled inks',
       img: 'images/inks/bottles.jpg',
       alt: 'bottled inks',
     },
     {
       id: 2,
-      type: 'cartridges',
+      type: 'ink cartridges',
       img: 'images/inks/cartridges.jpg',
       alt: 'ink cartridges',
     },
@@ -79,11 +83,37 @@ export const inks = {
       img: 'images/inks/ink-sample-sets.jpg',
       alt: 'sets of ink samples',
     },
+    {
+      id: 5,
+      type: 'shading inks',
+      img: 'images/inks/shading.jpg',
+      alt: 'sets of ink samples',
+    },
+    {
+      id: 6,
+      type: 'sheening inks',
+      img: 'images/inks/sheening.jpg',
+      alt: 'sets of ink samples',
+    },
+    {
+      id: 7,
+      type: 'shimmering inks',
+      img: 'images/inks/shimmering.jpg',
+      alt: 'sets of ink samples',
+    },
+    {
+      id: 8,
+      type: 'water resistant inks',
+      img: 'images/inks/water-resistant.jpg',
+      alt: 'sets of ink samples',
+    },
   ],
 };
 
 export const papers = {
   title: 'papers',
+  img: '/images/papers/category-papers.jpg',
+  alt: 'collection of notebooks',
   categories: [
     {
       id: 1,
@@ -109,17 +139,13 @@ export const papers = {
       img: 'images/papers/planners.jpg',
       alt: 'planners',
     },
-    {
-      id: 5,
-      type: 'paper accessories',
-      img: 'images/papers/accessories.jpg',
-      alt: 'paper accessories',
-    },
   ],
 };
 
 export const accessories = {
   title: 'accessories',
+  img: 'images/accessories/category-accessories.jpg',
+  alt: 'pen, ink, and paper accessories',
   categories: [
     {
       id: 1,
