@@ -30,11 +30,9 @@
   margin: 2rem 1rem;
   align-items: center;
 }
-.main-category.pens .main-category-list,
-.main-category.inks .main-category-list {
+.main-category .main-category-list {
   grid-template-columns: repeat(4, 1fr);
 }
-.main-category.papers .main-category-list,
 .main-category.accessories .main-category-list {
   grid-template-columns: repeat(5, 1fr);
 }
@@ -94,7 +92,6 @@
   background: rgba(0, 0, 0, 0);
   transition: 0.3s ease-in-out;
 }
-.main-category.papers .main-category-img-container:hover + .main-category-type,
 .main-category.accessories
   .main-category-img-container:hover
   + .main-category-type {
