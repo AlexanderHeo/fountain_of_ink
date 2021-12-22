@@ -27,14 +27,16 @@
     width 0.2s ease-in;
 }
 .product-hero-subcategory-section .main-category-img-container:hover,
-.product-hero-subcategory-section.accessories
+.product-hero-subcategory-section
+  .main-category.accessories
   .main-category-img-container:hover {
   transform: scale(1.1);
 }
 .product-hero-subcategory-section
   .main-category-img-container:hover
   + .main-category-type,
-.product-hero-subcategory-section.accessories
+.product-hero-subcategory-section
+  .main-category.accessories
   .main-category-img-container:hover
   + .main-category-type {
   width: 100%;
