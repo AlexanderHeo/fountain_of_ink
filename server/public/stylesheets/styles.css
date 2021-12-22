@@ -25,6 +25,7 @@ canvas,
 svg {
   display: block;
   max-width: 100%;
+  width: 100%;
 }
 input,
 button,
@@ -67,13 +68,6 @@ a:hover {
   color: dodgerblue;
 }
 
-/* temp - testing */
-
-.body {
-  height: 1000px;
-  background: dodgerblue;
-}
-
 .scroll-to-top {
   position: fixed;
   bottom: 25px;
@@ -83,6 +77,7 @@ a:hover {
 
 .main-category-title h3,
 .main-category-item div,
-.brand-item {
+.brand-item,
+.colors-section-title {
   text-transform: capitalize;
 }
