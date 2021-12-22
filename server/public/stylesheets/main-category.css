@@ -53,6 +53,9 @@
   overflow: hidden;
   transition: transform 0.3s ease-in-out;
 }
+.main-category-img-container img {
+  width: 100%;
+}
 .main-category-img-overlay {
   position: absolute;
   width: 100%;
