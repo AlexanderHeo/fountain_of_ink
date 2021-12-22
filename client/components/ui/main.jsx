@@ -8,7 +8,6 @@ import {
 import { accessories, inks, papers, pens } from '../lib/category-list';
 import Brands from './Brands';
 import Category from './Category';
-import Product from './Product';
 
 const Main = ({ handleCategory, menudown }) => {
   return (
@@ -77,10 +76,6 @@ const Main = ({ handleCategory, menudown }) => {
         <Category categories={papers} />
         <Category categories={accessories} />
         <Brands />
-        <Product categories={pens} />
-        <Product categories={inks} />
-        <Product categories={papers} />
-        <Product categories={accessories} />
       </div>
     </div>
   );
