@@ -1,0 +1,35 @@
+.colors-section-title {
+  text-align: center;
+  padding: 5rem 0;
+}
+.colors-section {
+  margin: 1rem 0;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 2rem 1rem;
+}
+.color-container {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  transition: 0.2s ease-in-out;
+}
+.color-size {
+  margin: 0 1rem;
+}
+.color-name {
+  width: 100%;
+  text-align: center;
+  pointer-events: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.color-container:hover {
+  transform: translateY(-10px);
+  transition: 0.2s ease-in-out;
+}
+.color-container:hover .color-name {
+  text-decoration: underline;
+}
