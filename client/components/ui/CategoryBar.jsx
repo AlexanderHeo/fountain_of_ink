@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class CategoryBar extends Component {
   state = {
@@ -18,22 +19,34 @@ class CategoryBar extends Component {
     return (
       <div className={this.state.categoryBar}>
         <div className='category-bar-item'>
-          <div className='category-bar-title'>Shop by Brand</div>
+          <Link to='/brands'>
+            <div className='category-bar-title'>Shop by Brand</div>
+          </Link>
         </div>
         <div className='category-bar-item'>
-          <div className='category-bar-title'>Fountain Pens</div>
+          <Link to='/pens'>
+            <div className='category-bar-title'>Fountain Pens</div>
+          </Link>
         </div>
         <div className='category-bar-item'>
-          <div className='category-bar-title'>Inks</div>
+          <Link to='/inks'>
+            <div className='category-bar-title'>Inks</div>
+          </Link>
         </div>
         <div className='category-bar-item'>
-          <div className='category-bar-title'>Papers</div>
+          <Link to='/papers'>
+            <div className='category-bar-title'>Papers</div>
+          </Link>
         </div>
         <div className='category-bar-item'>
-          <div className='category-bar-title'>Accessories</div>
+          <Link to='/accessories'>
+            <div className='category-bar-title'>Accessories</div>
+          </Link>
         </div>
         <div className='category-bar-item'>
-          <div className='category-bar-title'>Specials</div>
+          <Link to='/specials'>
+            <div className='category-bar-title'>Specials</div>
+          </Link>
         </div>
       </div>
     );

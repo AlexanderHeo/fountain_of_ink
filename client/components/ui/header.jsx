@@ -1,6 +1,7 @@
 import React from 'react';
 import { BsCart3 } from 'react-icons/bs';
 import { FiHeart, FiSearch } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import CategoryBar from './CategoryBar';
 
 const Header = ({ cartNumber, home, isVisible }) => {
@@ -12,12 +13,12 @@ const Header = ({ cartNumber, home, isVisible }) => {
             {home ? (
               <img src='/images/fountain-pen.png' alt='fountain pen nib logo' />
             ) : (
-              <a href='#' className='logo logo-link'>
+              <Link to='/' className='logo logo-link'>
                 <img
                   src='/images/fountain-pen.png'
                   alt='fountain pen nib logo'
                 />
-              </a>
+              </Link>
             )}
           </div>
           <p className='logo-title'>Fountain of Ink</p>

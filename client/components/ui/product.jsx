@@ -1,10 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { accessories, inks, papers, pens } from '../lib/category-list';
 import { inkColors, penColors } from '../lib/colors-list';
 import Brands from './Brands';
 import Category from './Category';
 import Colors from './Colors';
 
-const Product = ({ categories }) => {
+const Product = () => {
+  const params = useParams();
+  const productType = params.productType;
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, [productType]);
+
+  let categories;
+
+  switch (productType) {
+    case 'pens':
+      categories = pens;
+      break;
+    case 'inks':
+      categories = inks;
+      break;
+    case 'papers':
+      categories = papers;
+      break;
+    case 'accessories':
+      categories = accessories;
+      break;
+  }
   let colorElement;
   if (categories.title === 'pens') {
     colorElement = (

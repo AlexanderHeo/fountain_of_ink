@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Brands from '../components/ui/Brands';
 import Layout from '../components/ui/Layout';
 import Main from '../components/ui/Main';
+import Product from '../components/ui/product';
 import Scroll from './ScrollToTop';
 
 class App extends Component {
@@ -36,13 +39,38 @@ class App extends Component {
   render() {
     const isVisible = this.state.isVisible;
     return (
-      <Layout home isVisible={isVisible}>
-        <Main
-          handleCategory={this.handleCategory}
-          menudown={this.state.menudown}
-        />
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path='/'
+            element={
+              <Layout home isVisible={isVisible}>
+                <Main
+                  handleCategory={this.handleCategory}
+                  menudown={this.state.menudown}
+                />
+              </Layout>
+            }
+          />
+          <Route
+            path=':productType'
+            element={
+              <Layout isVisible>
+                <Product />
+              </Layout>
+            }
+          />
+          <Route
+            path='/brands'
+            element={
+              <Layout isVisible>
+                <Brands />
+              </Layout>
+            }
+          />
+        </Routes>
         <Scroll />
-      </Layout>
+      </BrowserRouter>
     );
   }
 }
