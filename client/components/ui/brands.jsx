@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ac, df, gk, ln, op, qs, tz } from '../lib/brands-list';
 import BrandsList from './BrandsList';
 const Brands = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
   return (
     <div className='brands-container' id='brands'>
       <div className='brands-title'>

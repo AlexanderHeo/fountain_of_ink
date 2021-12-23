@@ -5,6 +5,7 @@ import {
   BsChevronRight,
   BsChevronUp,
 } from 'react-icons/bs';
+import { NavLink } from 'react-router-dom';
 import { accessories, inks, papers, pens } from '../lib/category-list';
 import Brands from './Brands';
 import Category from './Category';
@@ -26,10 +27,21 @@ const Main = ({ handleCategory, menudown }) => {
               </div>
               {menudown ? (
                 <div className='category-list'>
-                  <div className='category'>Fountain Pens</div>
-                  <div className='category'>Inks</div>
-                  <div className='category'>Papers</div>
-                  <div className='category'>Accessories</div>
+                  <NavLink to='/pens'>
+                    <div className='category'>Fountain Pens</div>
+                  </NavLink>
+                  <NavLink to='/inks'>
+                    <div className='category'>Inks</div>
+                  </NavLink>
+                  <NavLink to='/papers'>
+                    <div className='category'>Papers</div>
+                  </NavLink>
+                  <NavLink to='/accessories'>
+                    <div className='category'>Accessories</div>
+                  </NavLink>
+                  <NavLink to='/brands'>
+                    <div className='category'>Shop by Brands</div>
+                  </NavLink>
                 </div>
               ) : null}
             </div>
