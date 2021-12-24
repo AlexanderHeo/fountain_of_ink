@@ -1,48 +1,45 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BsArrowUpSquare } from 'react-icons/bs';
 
-class ScrollToTop extends Component {
-  state = {
-    isVisible: false,
-  };
+const ScrollToTop = () => {
+  const [isVisible, setIsVisible] = useState(false);
 
-  componentDidMount = () => {
-    this.scrollToTop();
-    const scroll = this;
-    document.addEventListener('scroll', () => {
-      scroll.toggleVisibility();
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
     });
-  };
+    document.addEventListener('scroll', () => {
+      toggleVisibility();
+    });
+  }, []);
 
-  toggleVisibility = () => {
+  const toggleVisibility = () => {
     if (window.pageYOffset > 350) {
-      this.setState({ isVisible: true });
+      setIsVisible(true);
     } else {
-      this.setState({ isVisible: false });
+      setIsVisible(false);
     }
   };
 
-  scrollToTop = () => {
+  const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
   };
 
-  render() {
-    const { isVisible } = this.state;
-    return (
-      <>
-        {isVisible && (
-          <BsArrowUpSquare
-            className='scroll-to-top'
-            onClick={this.scrollToTop}
-            size='3rem'
-          />
-        )}
-      </>
-    );
-  }
-}
+  return (
+    <>
+      {isVisible && (
+        <BsArrowUpSquare
+          className='scroll-to-top'
+          onClick={scrollToTop}
+          size='3rem'
+        />
+      )}
+    </>
+  );
+};
 
 export default ScrollToTop;

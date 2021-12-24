@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Brands from '../components/ui/Brands';
 import Layout from '../components/ui/Layout';
@@ -6,73 +6,63 @@ import Main from '../components/ui/Main';
 import Product from '../components/ui/product';
 import Scroll from './ScrollToTop';
 
-class App extends Component {
-  state = {
-    menudown: false,
-    isVisible: false,
-  };
+const App = () => {
+  const [menudown, setMenudown] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
-  componentDidMount = () => {
-    const scroll = this;
+  useEffect(() => {
     document.addEventListener('scroll', () => {
-      scroll.toggleVisibility();
+      toggleVisibility();
     });
-  };
+  });
 
-  toggleVisibility = () => {
+  const toggleVisibility = () => {
     if (window.pageYOffset > 700) {
-      this.setState({ isVisible: true });
+      setIsVisible(true);
     } else {
-      this.setState({ isVisible: false });
+      setIsVisible(false);
     }
   };
 
-  handleCategory = () => {
-    const menudown = this.state.menudown;
+  const handleCategory = () => {
     if (menudown) {
-      this.setState({ menudown: false });
+      setMenudown(false);
     } else {
-      this.setState({ menudown: true });
+      setMenudown(true);
     }
   };
 
-  render() {
-    const isVisible = this.state.isVisible;
-    return (
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path='/'
-            element={
-              <Layout home isVisible={isVisible}>
-                <Main
-                  handleCategory={this.handleCategory}
-                  menudown={this.state.menudown}
-                />
-              </Layout>
-            }
-          />
-          <Route
-            path=':productType'
-            element={
-              <Layout isVisible>
-                <Product />
-              </Layout>
-            }
-          />
-          <Route
-            path='/brands'
-            element={
-              <Layout isVisible>
-                <Brands />
-              </Layout>
-            }
-          />
-        </Routes>
-        <Scroll />
-      </BrowserRouter>
-    );
-  }
-}
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path='/'
+          element={
+            <Layout home isVisible={isVisible}>
+              <Main handleCategory={handleCategory} menudown={menudown} />
+            </Layout>
+          }
+        />
+        <Route
+          path=':productType'
+          element={
+            <Layout isVisible>
+              <Product />
+            </Layout>
+          }
+        />
+        <Route
+          path='/brands'
+          element={
+            <Layout isVisible>
+              <Brands />
+            </Layout>
+          }
+        />
+      </Routes>
+      <Scroll />
+    </BrowserRouter>
+  );
+};
 
 export default App;
