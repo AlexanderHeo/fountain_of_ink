@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { featuredPens } from '../lib/carousel-list';
 import { accessories, inks, papers, pens } from '../lib/category-list';
 import { inkColors, penColors } from '../lib/colors-list';
 import Brands from './Brands';
 import Category from './Category';
 import Colors from './Colors';
+import ProductList from './ProductList';
 
 const Product = () => {
   const params = useParams();
@@ -48,7 +50,8 @@ const Product = () => {
     colorElement = null;
   }
   return (
-    <div className='product-container'>
+    <div className='product-container flex'>
+      <h2 className='flex'>{categories.title}</h2>
       <div className='product-hero-section flex'>
         <div className='product-hero-image-section flex'>
           <div className='product-hero-image-container flex'>
@@ -60,6 +63,7 @@ const Product = () => {
         </div>
       </div>
       {colorElement}
+      <ProductList products={featuredPens} />
       <Brands />
     </div>
   );
