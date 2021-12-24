@@ -80,10 +80,16 @@
 }
 .featured-image-container {
   position: relative;
-  padding: 2rem;
+  padding: 2rem 2rem 0;
   border: 1px solid black;
   border-radius: 1rem;
   background: white;
+}
+.featured-image-container h4 {
+  width: 100%;
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 1rem;
 }
 .chevron-image {
   position: absolute;
