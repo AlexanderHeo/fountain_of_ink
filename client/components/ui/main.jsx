@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-  BsChevronDown,
-  BsChevronLeft,
-  BsChevronRight,
-  BsChevronUp,
-} from 'react-icons/bs';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
 import { NavLink } from 'react-router-dom';
+import Carousel from '../../containers/Carousel';
+import { featuredInks, featuredPens } from '../lib/carousel-list';
 import { accessories, inks, papers, pens } from '../lib/category-list';
 import Brands from './Brands';
 import Category from './Category';
@@ -64,21 +61,18 @@ const Main = ({ handleCategory, menudown }) => {
             <div className='featured-title'>
               <h3>Featured Pens</h3>
             </div>
-            <div className='featured-image-container'>
-              <BsChevronLeft className='chevron-image left' size='2rem' />
-              <img src='images/pilot-vp.jpg' alt='notebook' />
-              <BsChevronRight className='chevron-image right' size='2rem' />
-            </div>
+            <Carousel images={featuredPens} />
           </div>
           <div className='featured-section'>
             <div className='featured-title'>
               <h3>Featured Inks</h3>
             </div>
-            <div className='featured-image-container'>
+            <Carousel images={featuredInks} />
+            {/* <div className='featured-image-container'>
               <BsChevronLeft className='chevron-image left' size='2rem' />
               <img src='images/montverde-burgundy.jpg' alt='notebook' />
               <BsChevronRight className='chevron-image right' size='2rem' />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
